@@ -1,0 +1,63 @@
+import React from "react";
+import styles from "./index.module.scss";
+import { TCategoriesMenuItems } from "@/types/categoriesMenu";
+import { clsx } from "clsx";
+import Link from "next/link";
+
+type Props = {
+  isActive: boolean;
+  list: TCategoriesMenuItems;
+};
+
+const TertiaryMenu: React.FC<Props> = ({ isActive, list = [] }: Props) => {
+  return (
+    <div
+      className={clsx(
+        styles.container,
+        isActive ? styles.active : styles.inactive
+      )}
+    >
+      {!list?.length ? (
+        <></>
+      ) : (
+        <div className={clsx(styles.list)}>
+          {list?.map((item) => (
+            <div key={item?.key}>
+              <Link
+                href={item.href || ""}
+                className={clsx(
+                  styles["list-title"],
+                  styles.link,
+                  styles["list-item"]
+                )}
+              >
+                {item.title}
+              </Link>
+              <div className={clsx(styles.sublist)}>
+                {!item?.children?.length ? (
+                  <></>
+                ) : (
+                  item.children.map((subitem) => (
+                    <Link
+                      href={item.href || ""}
+                      className={clsx(
+                        styles["sublist-title"],
+                        styles.link,
+                        styles["list-item"]
+                      )}
+                      key={subitem.key}
+                    >
+                      {subitem.title}
+                    </Link>
+                  ))
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TertiaryMenu;

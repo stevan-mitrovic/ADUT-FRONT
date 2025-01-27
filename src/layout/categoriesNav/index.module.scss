@@ -1,0 +1,16 @@
+.categories-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 15px;
+  gap: 8px;
+  position: relative;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      border-radius: 12px;
+    }
+  }
+}

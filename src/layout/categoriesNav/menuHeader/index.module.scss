@@ -1,0 +1,118 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 15px;
+  gap: 8px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      border-radius: 12px;
+      padding-right: 16px;
+    }
+  }
+}
+
+.title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 18px;
+  color: $text-color;
+  background-color: $primary-color;
+  padding: 8px 24px;
+  border-radius: 12px;
+  min-width: $all-categories-button-width;
+  max-width: $all-categories-button-width;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      min-width: $all-categories-button-width-mobile;
+      max-width: $all-categories-button-width-mobile;
+      gap: 12px;
+      font-size: 16px;
+      line-height: 18px;
+      padding: 6px 12px;
+    }
+  }
+}
+
+.sublist-toggle-button {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: $text-color;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      display: flex;
+    }
+  }
+}
+
+.sublist {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding-right: 24px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      position: absolute;
+      align-items: flex-start;
+      margin-top: 4px;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      flex-direction: column;
+      border-radius: 12px;
+      padding: 16px;
+      width: 100%;
+
+      &.active {
+        opacity: 1;
+        z-index: 9;
+      }
+
+      &.inactive {
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.sublist-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 18px;
+  color: $text-color;
+
+  span {
+    width: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      gap: 16px;
+    }
+  }
+}

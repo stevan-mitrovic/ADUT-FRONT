@@ -1,0 +1,25 @@
+.container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    img{
+        width: 57px;
+        height: auto;
+
+        @media (max-width: $mobile-breakpoint) {
+            & {
+                width: 40px;
+
+            }
+        }
+    }
+
+    span{
+        font-size: 20px;
+        line-height: 25px;
+        color: $text-color;
+        font-weight: 400;
+    }
+}

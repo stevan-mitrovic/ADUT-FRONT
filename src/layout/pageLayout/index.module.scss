@@ -1,0 +1,40 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding-top: 61px;
+    }
+  }
+}
+
+.content-container {
+  flex: 1;
+  padding: 0 25px;
+  background-color: $background-color;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding: 0;
+    }
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 14px 0;
+  max-width: $page-max-width;
+  margin: 0 auto;
+  background-color: $background-color;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding: 10px;
+    }
+  }
+}
