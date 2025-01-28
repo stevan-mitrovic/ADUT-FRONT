@@ -6,30 +6,30 @@ import HamburgerMenuIcon from "@/ui/icons/hamburgerMenu";
 
 type Props = {
   menuItems: TCategoriesMenuItems;
-  setIsSubmenuOpen: (isOpen: boolean) => void;
+  isOtherSubmenuVisible?: boolean;
+  handleCategoriesSubmenuToggle: (isOpen?: boolean) => void;
+  handleOtherSubmenuToggle: () => void;
 };
 
 const MenuHeader: React.FC<Props> = ({
   menuItems = [],
-  setIsSubmenuOpen,
+  isOtherSubmenuVisible = false,
+  handleCategoriesSubmenuToggle,
+  handleOtherSubmenuToggle,
 }: Props) => {
   if (!menuItems.length) return null;
 
   //TODO handle click outside
 
   const [mainCategory, ...subMenuItems] = menuItems;
-  const [sublistOpen, setSublistOpen] = React.useState(false);
-
-  const toggleSublist = () => setSublistOpen((prev) => !prev);
 
   return (
     <div className={styles.container}>
       <div
         className={clsx(styles.title)}
-        onMouseOver={() => setIsSubmenuOpen(true)}
-        onMouseLeave={() => setIsSubmenuOpen(false)}
-        // onFocus={() => setIsSubmenuOpen(true)}
-        // onBlur={() => setIsSubmenuOpen(false)}
+        // onClick={() => handleCategoriesSubmenuToggle()}
+        onMouseOver={() => handleCategoriesSubmenuToggle(true)}
+        onMouseLeave={() => handleCategoriesSubmenuToggle(false)}
         role="button"
         tabIndex={0}
       >
@@ -38,13 +38,16 @@ const MenuHeader: React.FC<Props> = ({
       </div>
       <div
         className={clsx(styles["sublist-toggle-button"])}
-        onClick={toggleSublist}
+        onClick={handleOtherSubmenuToggle}
       >
         Meni <HamburgerMenuIcon />
       </div>
-      <div className={clsx(
-        styles.sublist,
-        sublistOpen ? styles.active : styles.inactive)}>
+      <div
+        className={clsx(
+          styles.sublist,
+          isOtherSubmenuVisible ? styles.active : styles.inactive
+        )}
+      >
         {subMenuItems.map((item) => (
           <a
             key={item?.key}

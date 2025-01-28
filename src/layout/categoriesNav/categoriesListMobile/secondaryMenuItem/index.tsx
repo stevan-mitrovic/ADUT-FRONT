@@ -17,23 +17,20 @@ const SecondaryMenuItem: React.FC<Props> = ({
   const list = Array.isArray(data?.children) ? data.children : [];
 
   return (
-    <div>
-      <a
-        href={data.href || ""}
-        className={clsx(styles.title)}
-      >
+    <div className={styles.container}>
+      <a href={data.href || ""} className={clsx(styles.title)}>
         {data?.icon ? data.icon : ""}
         {data?.title}
       </a>
-      {list?.length && (
+      {list?.length ? (
         <button
-          className={styles.accordionTitle}
+          className={clsx(styles.accordionToggle)}
           onClick={() => toggleItem(data.key)}
           aria-controls={`accordion-content-${data.key}`}
           aria-expanded={activeSublistKey === data.key}
-        >
-          {data.title}
-        </button>
+        ></button>
+      ) : (
+        ""
       )}
     </div>
   );

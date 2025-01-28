@@ -20,9 +20,9 @@ const CategoriesListMobile: React.FC<Props> = ({
     menuItems?.[0].key || ""
   );
 
-   const toggleItem = (key: string) => {
-     setActiveSublistKey((prev) => (prev === key ? "" : key));
-   };
+  const toggleItem = (key: string) => {
+    setActiveSublistKey((prev) => (prev === key ? "" : key));
+  };
 
   return (
     <div
@@ -36,47 +36,21 @@ const CategoriesListMobile: React.FC<Props> = ({
       aria-hidden={!isSubmenuVisible}
     >
       {menuItems.map((item) => (
-        <div
-          key={item.key}
-          className={styles.accordionItem}
-          aria-expanded={activeSublistKey === item.key}
-        >
+        <div key={item.key} aria-expanded={activeSublistKey === item.key}>
           <SecondaryMenuItem
             toggleItem={toggleItem}
             data={item}
             activeSublistKey={activeSublistKey}
           />
-          {/* <button
-            className={styles.accordionTitle}
-            onClick={() => toggleItem(item.key)}
-            aria-controls={`accordion-content-${item.key}`}
-            aria-expanded={activeSublistKey === item.key}
-          >
-            {item.title}
-          </button> */}
           <div
             id={`accordion-content-${item.key}`}
             className={styles.accordionContent}
             aria-hidden={activeSublistKey !== item.key}
           >
-            <div className={styles["tertiary-menu"]}>
-                <TertiaryMenu
-                  isActive={true}
-                  list={item?.children}
-                />
-            </div>
+            <TertiaryMenu list={item?.children} />
           </div>
         </div>
       ))}
-      {/* <div className={styles["secondary-menu"]}>
-        {menuItems?.map((item) => (
-          <SecondaryMenu
-            key={item?.key}
-            data={item}
-            setActiveSublist={setActiveSublistKey}
-          />
-        ))}
-      </div> */}
     </div>
   );
 };

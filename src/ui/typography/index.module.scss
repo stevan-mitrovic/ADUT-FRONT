@@ -1,0 +1,52 @@
+/* Define base styling for each typography variant */
+.typography{
+    font-weight: 700;
+    color: $text-color;
+    line-height: 1.2;
+}
+
+.h1 {
+  font-size: 48px;
+}
+
+.h2 {
+  font-size: 38px;
+}
+
+.h3 {
+  font-size: 32px;
+}
+
+.h4 {
+  font-size: 24px;
+}
+
+.h5 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.h6 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.p2 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.p3 {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 11px;
+  font-weight: 400;
+}

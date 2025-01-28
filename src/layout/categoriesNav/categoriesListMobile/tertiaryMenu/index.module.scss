@@ -1,32 +1,13 @@
 .container {
   width: 100%;
   justify-content: space-between;
-  border-radius: 15px;
-  overflow: auto;
-  height: 100%;
-
-  &.active {
-    position: relative;
-    opacity: 1;
-    z-index: 1;
-    top: 0;
-    left: 0;
-  }
-
-  &.inactive {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-    top: 0;
-    left: 0;
-  }
+  height: auto;
 }
 
 .list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem; /* Spacing between grid items */
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .sublist {

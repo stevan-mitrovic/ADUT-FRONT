@@ -5,16 +5,14 @@ import { clsx } from "clsx";
 import Link from "next/link";
 
 type Props = {
-  isActive: boolean;
   list: TCategoriesMenuItems;
 };
 
-const TertiaryMenu: React.FC<Props> = ({ isActive, list = [] }: Props) => {
+const TertiaryMenu: React.FC<Props> = ({ list = [] }: Props) => {
   return (
     <div
       className={clsx(
-        styles.container,
-        isActive ? styles.active : styles.inactive
+        styles.container
       )}
     >
       {!list?.length ? (

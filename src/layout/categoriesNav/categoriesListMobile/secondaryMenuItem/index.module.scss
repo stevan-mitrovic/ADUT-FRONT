@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 14px 24px;
+}
+
 .title {
   cursor: pointer;
   width: 100%;
@@ -8,29 +16,21 @@
   font-weight: 500;
   font-size: 16px;
   color: $text-color;
-  padding: 14px 24px;
-  position: relative;
+}
 
-  &.has-children::after {
-    content: "";
-    width: 6px;
-    aspect-ratio: 1;
-    border-top: 2px solid $text-color;
-    border-left: 2px solid $text-color;
-    transform: translateY(-50%) rotate(135deg);
-    position: absolute;
-    top: 50%;
-    right: 16px;
+.accordionToggle {
+  background-color: transparent;
+  border: none;
+  width: 8px;
+  aspect-ratio: 1;
+  border-top: 2px solid $text-color;
+  border-left: 2px solid $text-color;
+
+  &[aria-expanded="true"] {
+    transform: rotate(225deg);
   }
 
-  @media (max-width: $mobile-breakpoint) {
-    & {
-      // border-radius: 12px;
-      // padding-right: 16px;
-
-      &.has-children::after {
-        transform: translateY(-50%) rotate(225deg);
-      }
-    }
+  &[aria-expanded="false"] {
+    transform: rotate(45deg);
   }
 }
