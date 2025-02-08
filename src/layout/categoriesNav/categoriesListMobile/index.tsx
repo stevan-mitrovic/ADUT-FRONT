@@ -5,7 +5,7 @@ import { TCategoriesMenuItems } from "../../../types/categoriesMenu";
 import SecondaryMenuItem from "./secondaryMenuItem";
 import TertiaryMenu from "./tertiaryMenu";
 
-type Props = {
+interface Props {
   menuItems: TCategoriesMenuItems;
   isSubmenuVisible: boolean;
   setIsSubmenuOpen: (isOpen: boolean) => void;
@@ -16,9 +16,7 @@ const CategoriesListMobile: React.FC<Props> = ({
   isSubmenuVisible,
   setIsSubmenuOpen,
 }: Props) => {
-  const [activeSublistKey, setActiveSublistKey] = React.useState(
-    menuItems?.[0].key || ""
-  );
+  const [activeSublistKey, setActiveSublistKey] = React.useState("");
 
   const toggleItem = (key: string) => {
     setActiveSublistKey((prev) => (prev === key ? "" : key));

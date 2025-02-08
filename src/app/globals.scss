@@ -20,11 +20,11 @@ a {
 }
 
 ::selection {
-  background-color: rgba($primary-color, 0.4);
+  background-color: rgba($button-border-gray-color, 0.4);
   color: $text-color;
 }
 
 ::-moz-selection {
-  background-color: rgba($primary-color, 0.4);
+  background-color: rgba($button-border-gray-color, 0.4);
   color: $text-color;
 }

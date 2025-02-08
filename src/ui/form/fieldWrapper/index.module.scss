@@ -1,0 +1,40 @@
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  position: relative;
+
+  label {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.2;
+    color: rgba($text-color, 0.8);
+    margin-bottom: 4px;
+  }
+
+  .error {
+    position: absolute;
+    color: $error-color;
+    font-size: 12px;
+    top: calc( 100% + 3px);
+    left: 0;
+    width: 100%;
+    font-style: italic;
+    margin-left: 3px;
+  }
+
+  &.left {
+    .label,
+    .error {
+      text-align: left;
+    }
+  }
+
+  &.center {
+    .label,
+    .error {
+      text-align: center;
+    }
+  }
+}

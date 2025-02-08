@@ -1,0 +1,68 @@
+@import "../globalFormStyles.scss";
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+
+  input {
+    padding: 8px;
+    border: 1px solid $field-border-color;
+    border-radius: inherit;
+    transition: $transition;
+    background-color: white;
+    @include global-field-value;
+
+    &:not(:disabled):hover {
+      border-color: $tertiary-color;
+    }
+
+    &:not(:disabled):focus,
+    &:not(:disabled):focus-visible,
+    &:not(:disabled):focus-within,
+    &:not(:disabled):target {
+      border-color: $tertiary-color;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: $background-color;
+    }
+
+    &::placeholder {
+      @include global-field-placeholder;
+    }
+
+    /* For WebKit browsers (Chrome, Safari) */
+    &::-webkit-input-placeholder {
+      @include global-field-placeholder;
+    }
+
+    /* For Mozilla Firefox (versions 19 and above) */
+    &::-moz-placeholder {
+      @include global-field-placeholder;
+    }
+
+    /* For Internet Explorer 10+ */
+    &:-ms-input-placeholder {
+      @include global-field-placeholder;
+    }
+
+    /* For Microsoft Edge */
+    &::-ms-input-placeholder {
+      @include global-field-placeholder;
+    }
+  }
+
+  .error {
+    border-color: $error-color;
+  }
+
+  .left{
+    text-align: left;
+  }
+
+  .center{
+    text-align: center;
+  }
+}

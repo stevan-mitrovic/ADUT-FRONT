@@ -1,16 +1,18 @@
 import React from "react";
 import styles from "../index.module.scss";
-import { Button } from "../../../ui/buttons";
-import UserIcon from "../../../ui/icons/user";
-import ShoppingCartIcon from "../../../ui/icons/shoppingCart";
+import { Button } from "@/ui/buttons";
+import UserIcon from "@/ui/icons/user";
+import ShoppingCartIcon from "@/ui/icons/shoppingCart";
+import { useAuthStore } from "@/store/authStore";
 
-type Props = {
+interface Props {
   isMobileView: boolean;
-};
+}
 
 const RegisteredUserActions: React.FC<Props> = ({ isMobileView }: Props) => {
+  const { logout } = useAuthStore();
   const onProfileClick = () => {
-    console.log("Go to profile");
+    logout();
   };
   const onCardClick = () => {
     console.log("Go to profile");

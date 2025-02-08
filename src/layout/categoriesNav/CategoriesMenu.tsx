@@ -6,7 +6,7 @@ import CategoriesList from "./categoriesList";
 import CategoriesListMobile from "./categoriesListMobile";
 import { log } from "console";
 
-type Props = {
+interface Props {
   menuItems: TCategoriesMenuItems;
 };
 

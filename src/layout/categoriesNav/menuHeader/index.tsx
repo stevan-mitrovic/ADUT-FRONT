@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 import { TCategoriesMenuItems } from "@/types/categoriesMenu";
 import HamburgerMenuIcon from "@/ui/icons/hamburgerMenu";
 
-type Props = {
+interface Props {
   menuItems: TCategoriesMenuItems;
   isOtherSubmenuVisible?: boolean;
   handleCategoriesSubmenuToggle: (isOpen?: boolean) => void;

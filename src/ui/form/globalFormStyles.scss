@@ -1,0 +1,20 @@
+@mixin global-field-content {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+
+  @media (max-width: $mobile-breakpoint) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+@mixin global-field-placeholder {
+  color: rgba($text-color, 0.3) !important;
+  @include global-field-content;
+}
+
+@mixin global-field-value {
+  color: $text-color !important;
+  @include global-field-content;
+}

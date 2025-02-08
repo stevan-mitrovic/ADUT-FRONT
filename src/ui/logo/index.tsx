@@ -17,7 +17,7 @@ import { COMPANY_INFO } from "../../constants/companyInfo";
  * @typedef {Object} Props
  * @property {boolean} [short=false] - If true, only the logo image is displayed; otherwise, the company name is also displayed.
  */
-type Props = {
+interface Props {
   short?: boolean;
 };
 

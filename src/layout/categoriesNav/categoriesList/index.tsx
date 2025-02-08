@@ -5,7 +5,7 @@ import { TCategoriesMenuItems } from "../../../types/categoriesMenu";
 import SecondaryMenu from "./secondaryMenu";
 import TertiaryMenu from "./tertiaryMenu";
 
-type Props = {
+interface Props {
   menuItems: TCategoriesMenuItems;
   isSubmenuVisible: boolean;
   setIsSubmenuOpen: (isOpen: boolean) => void;

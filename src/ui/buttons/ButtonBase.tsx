@@ -18,7 +18,8 @@ import styles from "./index.module.scss";
  * @property {"green" | "gray" | "white" | "black"} [color="green"] - The color theme of the button.
  * @property {"medium" | "large"} [size="medium"] - The size of the button.
  * @property {"bold" | "regular"} [font="regular"] - The font style for the button text.
- * @property {string} [className] - Additional class names to style the button.
+ * @property {"bold" | "regular"} [font="regular"] - The font style for the button text.
+ * @property {boolean} [widthFull] - The full with style of the button.
  * @property {React.ReactNode} [icon] - An optional icon to display inside the button.
  * @property {React.ReactNode} children - The content of the button.
  * @property {React.ButtonHTMLAttributes<HTMLButtonElement>} [props] - Additional button attributes for `button` element.
@@ -30,6 +31,7 @@ export type ButtonProps = {
   color?: "green" | "gray" | "white" | "black";
   size?: "medium" | "large";
   font?: "bold" | "regular";
+  widthFull?: boolean;
   className?: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
@@ -48,6 +50,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
   size = "medium",
   font = "regular",
   styleType = "button",
+  widthFull = false,
   className,
   icon,
   children,
@@ -62,6 +65,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
         styles[size],
         styles[font],
         styles[`style-${styleType}`],
+        widthFull && styles['full-w'],
         className
       )}
       {...props}

@@ -4,7 +4,7 @@ import { TCategoriesMenuItems } from "@/types/categoriesMenu";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-type Props = {
+interface Props {
   list: TCategoriesMenuItems;
 };
 

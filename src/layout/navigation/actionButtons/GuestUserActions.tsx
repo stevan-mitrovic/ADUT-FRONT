@@ -4,15 +4,12 @@ import { Button } from "../../../ui/buttons";
 import UserPlusIcon from "../../../ui/icons/userPlus";
 import LoginIcon from "../../../ui/icons/login";
 
-type Props = {
+interface Props {
   isMobileView: boolean;
-};
+}
 
 const GuestUserActions: React.FC<Props> = ({ isMobileView }: Props) => {
   const onProfileClick = () => {
-    console.log("Go to profile");
-  };
-  const onCardClick = () => {
     console.log("Go to profile");
   };
 
@@ -25,14 +22,14 @@ const GuestUserActions: React.FC<Props> = ({ isMobileView }: Props) => {
             as="a"
             icon={<UserPlusIcon />}
           />
-          <Button.Icon onClick={onCardClick} as="a" icon={<LoginIcon />} />
+          <Button.Icon as="a" href={"/login"} icon={<LoginIcon />} />
         </>
       ) : (
         <>
           <Button.White as="a" onClick={onProfileClick} icon={<UserPlusIcon />}>
             Registracija
           </Button.White>
-          <Button.White as="a" onClick={onCardClick} icon={<LoginIcon />}>
+          <Button.White as="a" href={"/login"} icon={<LoginIcon />}>
             Login
           </Button.White>
         </>

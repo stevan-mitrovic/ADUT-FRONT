@@ -1,5 +1,5 @@
 import React, { FC, CSSProperties } from "react";
-import styles from "./Typography.module.scss";
+import styles from "./index.module.scss";
 import clsx from "clsx";
 import { Variant, TextAlign, FontWeight, As } from "./types";
 
@@ -18,6 +18,7 @@ interface TypographyProps {
    * - `"p2"`
    * - `"p3"`
    * - `"span"`
+   * - `"span2"`
    */
   variant: Variant;
 
@@ -83,7 +84,12 @@ const Typography: FC<TypographyProps> = ({
   fontWeight,
   fontSize,
 }) => {
-  const Component = as || variant?.startsWith("p") ? "p" : (variant as As);
+  const Component =
+    as || variant?.startsWith("p")
+      ? "p"
+      : variant?.startsWith("span")
+      ? "span"
+      : (variant as As);
 
   const customStyle: CSSProperties = {
     color,

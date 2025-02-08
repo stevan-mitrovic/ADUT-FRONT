@@ -16,7 +16,7 @@ import SearchIcon from "../../icons/search";
  * @property {number} [minHeight=32] - The minimum height of the input field and container, in pixels.
  * @property {string} [placeholder="Pretraga"] - The placeholder text displayed in the input field.
  */
-type Props = {
+interface Props {
   minHeight?: number;
   placeholder?: string;
 };

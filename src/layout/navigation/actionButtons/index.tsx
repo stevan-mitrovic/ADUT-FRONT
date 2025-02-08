@@ -1,15 +1,19 @@
 import React from "react";
 import RegisteredUserActions from "./RegisteredUserActions";
 import GuestUserActions from "./GuestUserActions";
+import { useAuthStore } from "@/store/authStore";
+import { userType } from "@/constants/user";
 
-type Props = {
+interface Props {
   isMobileView: boolean;
-};
+}
 
 const ActionButtons: React.FC<Props> = ({ isMobileView }: Props) => {
-  const isUserLoggedIn = false;
+  const { userType: storeUserType } = useAuthStore();
+  console.log("store user type");
+  console.log(storeUserType);
 
-  return isUserLoggedIn ? (
+  return storeUserType === userType.USER ? (
     <RegisteredUserActions isMobileView={isMobileView} />
   ) : (
     <GuestUserActions isMobileView={isMobileView} />

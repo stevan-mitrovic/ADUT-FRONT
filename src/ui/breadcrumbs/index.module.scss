@@ -1,0 +1,45 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumbItem {
+    margin-right: 8px;
+
+    &:not(:last-child)::after {
+      content: "›";
+      margin-left: 8px;
+    }
+  }
+
+  .breadcrumbContent {
+    text-decoration: none;
+    color: rgba($text-color, 0.5);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .breadcrumbLink {
+    transition: $transition;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

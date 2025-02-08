@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 import styles from "./index.module.scss";
 import { TCategoriesMenuItem } from "@/types/categoriesMenu";
 
-type Props = {
+interface Props {
   data: TCategoriesMenuItem;
   activeSublistKey: string;
   toggleItem: (key: string) => void;
