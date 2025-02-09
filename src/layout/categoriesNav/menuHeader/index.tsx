@@ -1,27 +1,24 @@
 import React from "react";
 import { clsx } from "clsx";
 import styles from "./index.module.scss";
-import { TCategoriesMenuItems } from "@/types/categoriesMenu";
 import HamburgerMenuIcon from "@/ui/icons/hamburgerMenu";
+import { basicCategoriesMenu } from "@/constants/categoriesList";
 
 interface Props {
-  menuItems: TCategoriesMenuItems;
   isOtherSubmenuVisible?: boolean;
   handleCategoriesSubmenuToggle: (isOpen?: boolean) => void;
   handleOtherSubmenuToggle: () => void;
 };
 
 const MenuHeader: React.FC<Props> = ({
-  menuItems = [],
   isOtherSubmenuVisible = false,
   handleCategoriesSubmenuToggle,
   handleOtherSubmenuToggle,
 }: Props) => {
-  if (!menuItems.length) return null;
 
   //TODO handle click outside
 
-  const [mainCategory, ...subMenuItems] = menuItems;
+  const [mainCategory, ...subMenuItems] = basicCategoriesMenu;
 
   return (
     <div className={styles.container}>

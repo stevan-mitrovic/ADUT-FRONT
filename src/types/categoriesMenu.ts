@@ -7,3 +7,9 @@ export type TCategoriesMenuItem = {
 }
 
 export type TCategoriesMenuItems = TCategoriesMenuItem[];
+
+export type TCategory = TCategoriesMenuItem & {
+  id: string;
+};
+
+export type TCategories = TCategory[];

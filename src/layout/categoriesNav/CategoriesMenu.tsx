@@ -1,17 +1,14 @@
 import React from "react";
 import styles from "./index.module.scss";
 import MenuHeader from "./menuHeader";
-import { TCategoriesMenuItems } from "@/types/categoriesMenu";
 import CategoriesList from "./categoriesList";
 import CategoriesListMobile from "./categoriesListMobile";
-import { log } from "console";
+import { useCategoryStore } from "@/store/categoryStore";
 
-interface Props {
-  menuItems: TCategoriesMenuItems;
-};
 
-const CategoriesMenu: React.FC<Props> = ({ menuItems }: Props) => {
+const CategoriesMenu: React.FC = () => {
   const menuRef = React.useRef<HTMLDivElement>(null);
+  const categories = useCategoryStore((state) => state.categories);
 
   const [isSubmenuOpen, setIsSubmenuOpen] = React.useState({
     categories: false,
@@ -51,19 +48,18 @@ const CategoriesMenu: React.FC<Props> = ({ menuItems }: Props) => {
   return (
     <div ref={menuRef} className={styles["categories-menu"]}>
       <MenuHeader
-        menuItems={menuItems}
         isOtherSubmenuVisible={isSubmenuOpen?.other}
         handleCategoriesSubmenuToggle={handleCategoriesSubmenuToggle}
         handleOtherSubmenuToggle={handleOtherSubmenuToggle}
       />
       <CategoriesList
-        menuItems={menuItems[0]?.children || []}
+        menuItems={categories || []}
         isSubmenuVisible={isSubmenuOpen?.categories}
         setIsSubmenuOpen={handleCategoriesSubmenuToggle}
       />
 
       <CategoriesListMobile
-        menuItems={menuItems[0]?.children || []}
+        menuItems={categories || []}
         isSubmenuVisible={isSubmenuOpen?.categories}
         setIsSubmenuOpen={handleCategoriesSubmenuToggle}
       />

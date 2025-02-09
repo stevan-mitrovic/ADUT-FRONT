@@ -9,7 +9,7 @@ interface Props {
   menuItems: TCategoriesMenuItems;
   isSubmenuVisible: boolean;
   setIsSubmenuOpen: (isOpen: boolean) => void;
-};
+}
 
 const CategoriesList: React.FC<Props> = ({
   menuItems,
@@ -17,7 +17,7 @@ const CategoriesList: React.FC<Props> = ({
   setIsSubmenuOpen,
 }: Props) => {
   const [activeSublistKey, setActiveSublistKey] = React.useState(
-    menuItems?.[0].key || ""
+    menuItems?.[0]?.key || ""
   );
 
   return (
