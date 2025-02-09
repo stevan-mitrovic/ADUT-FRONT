@@ -9,27 +9,19 @@ interface Props {
 }
 
 const GuestUserActions: React.FC<Props> = ({ isMobileView }: Props) => {
-  const onProfileClick = () => {
-    console.log("Go to profile");
-  };
-
   return (
     <div className={styles.buttons}>
       {isMobileView ? (
         <>
-          <Button.Icon
-            onClick={onProfileClick}
-            as="a"
-            icon={<UserPlusIcon />}
-          />
-          <Button.Icon as="a" href={"/login"} icon={<LoginIcon />} />
+          <Button.Icon href={"/auth/register"} as="a" icon={<UserPlusIcon />} />
+          <Button.Icon as="a" href={"/auth/login"} icon={<LoginIcon />} />
         </>
       ) : (
         <>
-          <Button.White as="a" onClick={onProfileClick} icon={<UserPlusIcon />}>
+          <Button.White as="a" href={"/auth/register"} icon={<UserPlusIcon />}>
             Registracija
           </Button.White>
-          <Button.White as="a" href={"/login"} icon={<LoginIcon />}>
+          <Button.White as="a" href={"/auth/login"} icon={<LoginIcon />}>
             Login
           </Button.White>
         </>

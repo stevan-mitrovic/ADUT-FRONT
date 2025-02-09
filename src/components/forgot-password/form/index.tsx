@@ -5,20 +5,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "@/ui/form/inputField";
 import Typography from "@/ui/typography";
 import { Button } from "@/ui/buttons";
-import { loginSchema } from "@/schemas/loginSchema";
-import { useRouter } from "next/navigation";
+import { forgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
 import axios from "axios";
-import { useAuthStore } from "@/store/authStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function Login() {
+export default function ForgotPassword() {
   const router = useRouter();
-  const fetchUser = useAuthStore((state) => state.fetchUser);
   const { control, handleSubmit } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(forgotPasswordSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -28,13 +25,10 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("/api/auth/login", formData);
+      const response = await axios.post("/api/auth/forgot-password", formData);
       console.log("response");
       console.log(response);
-
-      await fetchUser();
-
-      router.push("/");
+      router.push("/auth/forgot-password/success");
     } catch (error) {
       console.log("error");
       console.log(error);
@@ -51,7 +45,15 @@ export default function Login() {
           textAlign="center"
           fontWeight={"700"}
         >
-          Log in
+          Zaboravljena lozinka
+        </Typography>
+        <Typography
+          variant="p"
+          className={styles.title}
+          textAlign="center"
+          fontWeight={"400"}
+        >
+          Unesite vaš email da bi ste dobili link za promjenu lozinke
         </Typography>
         <InputField
           name="email"
@@ -60,25 +62,18 @@ export default function Login() {
           placeholder="npr. myemail@email.com"
           textAlign="center"
         />
-        <InputField
-          name="password"
-          control={control}
-          label="Lozinka"
-          type="password"
-          placeholder="*********"
-          textAlign="center"
-        />
-        <Link href="/auth/forgot-password">
+        <Link href="/auth/login">
           <Typography
             variant="span"
             className={styles["forgot-password"]}
             textAlign="center"
+            // color="#76AD30"
           >
-            Zaboravili ste lozinku?
+            {"< Nazad na login"}
           </Typography>
         </Link>
         <Button.Primary type="submit" widthFull font="bold" size="large">
-          Login
+          Pošalji link
         </Button.Primary>
       </form>
     </div>

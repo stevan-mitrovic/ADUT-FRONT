@@ -31,8 +31,25 @@
   margin-bottom: 24px;
 }
 
+.subtitle {
+  color: rgba($text-color, 0.5) !important;
+}
+
 .forgot-password {
   color: $primary-color !important;
   display: block;
-  margin-bottom: 34px;
+  margin-top: 12px;
+}
+
+.mail-sent-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 25px;
+}
+
+.info {
+  color: rgba($text-color, 0.5) !important;
+  max-width: 228px;
+  margin: 0 auto;
 }

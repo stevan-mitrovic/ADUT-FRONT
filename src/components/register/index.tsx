@@ -5,20 +5,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "@/ui/form/inputField";
 import Typography from "@/ui/typography";
 import { Button } from "@/ui/buttons";
-import { loginSchema } from "@/schemas/loginSchema";
+import { registrationSchema } from "@/schemas/registrationSchema";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
-import Link from "next/link";
 
-export default function Login() {
+export default function Register() {
   const router = useRouter();
   const fetchUser = useAuthStore((state) => state.fetchUser);
   const { control, handleSubmit } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registrationSchema),
     defaultValues: {
+      firstName: "",
+      lastName: "",
+      phone: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -28,7 +31,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("/api/auth/login", formData);
+      const response = await axios.post("/api/auth/register", formData);
       console.log("response");
       console.log(response);
 
@@ -51,14 +54,33 @@ export default function Login() {
           textAlign="center"
           fontWeight={"700"}
         >
-          Log in
+          Registracija
         </Typography>
+        <div className={styles["name-box"]}>
+          <InputField
+            name="firstName"
+            control={control}
+            label="Ime"
+            placeholder="Ime"
+          />
+          <InputField
+            name="lastName"
+            control={control}
+            label="Prezime"
+            placeholder="Prezime"
+          />
+        </div>
+        <InputField
+          name="phone"
+          control={control}
+          label="Telefon"
+          placeholder="Telefon"
+        />
         <InputField
           name="email"
           control={control}
           label="Email"
           placeholder="npr. myemail@email.com"
-          textAlign="center"
         />
         <InputField
           name="password"
@@ -66,19 +88,16 @@ export default function Login() {
           label="Lozinka"
           type="password"
           placeholder="*********"
-          textAlign="center"
         />
-        <Link href="/auth/forgot-password">
-          <Typography
-            variant="span"
-            className={styles["forgot-password"]}
-            textAlign="center"
-          >
-            Zaboravili ste lozinku?
-          </Typography>
-        </Link>
+        <InputField
+          name="confirmPassword"
+          control={control}
+          label="Ponovi lozinku"
+          type="password"
+          placeholder="*********"
+        />
         <Button.Primary type="submit" widthFull font="bold" size="large">
-          Login
+          Registruj se
         </Button.Primary>
       </form>
     </div>

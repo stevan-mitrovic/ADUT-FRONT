@@ -31,8 +31,23 @@
   margin-bottom: 24px;
 }
 
-.forgot-password {
-  color: $primary-color !important;
-  display: block;
-  margin-bottom: 34px;
+.name-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 100%;
+
+  & > div {
+    max-width: 156px;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      grid-template-columns: 1fr;
+      gap: 0;
+      & > div {
+        max-width: unset;
+      }
+    }
+  }
 }

@@ -1,3 +1,25 @@
+.nav-mobile{
+  width: 100%;
+  display: none;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      display: block;
+    }
+  }
+}
+
+.nav-desktop{
+  width: 100%;
+  display: block;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      display: none;
+    }
+  }
+}
+
 .navigation {
   position: fixed;
   top: 0;

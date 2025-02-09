@@ -43,7 +43,7 @@ const FieldWrapper: React.FC<FieldWrapperProps> = ({
     <div className={clsx(styles.fieldWrapper, styles[textAlign])}>
       <label className={styles.label} htmlFor={name}>{label}</label>
       {children}
-      {error && <span className={styles.error}>{error}</span>}
+      <span className={styles.error}>{error ? error : ""}</span>
     </div>
   );
 };
