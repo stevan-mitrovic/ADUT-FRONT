@@ -1,6 +1,6 @@
-import { UserType } from "@/types/user";
+import { TUserType } from "@/types/user";
 
-export const userType: {[key: string]: UserType} = {
+export const userType: {[key: string]: TUserType} = {
     USER: "user",
     GUEST: "guest"
 }

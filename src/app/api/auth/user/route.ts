@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAuthToken } from "@/lib/cookes";
+import { TUserData } from "@/types/user";
 import { userType } from "@/constants/user";
 import { UserResponseMapper } from "@/lib/mapers/userMaper";
 import { testingData } from "@/constants/testingData";
@@ -26,9 +27,9 @@ export async function GET(): Promise<NextResponse> {
      * Simulated API response delay.
      * This mimics fetching user data from a database or external API.
      *
-     * @returns {Promise<{ data: any }>}
+     * @returns {Promise<{ data: TUserData }>}
      */
-    const response = await new Promise<{ data: any }>((resolve) => {
+    const response = await new Promise<{ data: TUserData }>((resolve) => {
       setTimeout(() => {
         resolve({
           data: {

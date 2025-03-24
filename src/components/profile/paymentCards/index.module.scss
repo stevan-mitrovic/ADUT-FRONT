@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+    }
+  }
+}
+
+.title {
+  margin-bottom: 24px;
+}

@@ -1,22 +1,22 @@
 import { create } from "zustand";
 import axios from "axios";
-import { UserType } from "@/types/user";
+import { TUserType, TUserData } from "@/types/user";
 import { userType } from "@/constants/user";
 
 /**
  * Represents the authentication state and available actions.
  * @typedef {Object} AuthState
- * @property {{ id: number, name: string, email: string } | null} user - The currently authenticated user or null if not logged in.
+ * @property {TUserData | null} user - The currently authenticated user or null if not logged in.
  * @property {boolean} isAuthenticated - Whether the user is authenticated.
- * @property {UserType} userType - The type of user (e.g., guest, admin).
+ * @property {TUserType} userType - The type of user (e.g., guest, admin).
  * @property {boolean} isLoading - Indicates if authentication data is being fetched.
  * @property {() => Promise<void>} fetchUser - Fetches the user data from the API if a valid token exists.
  * @property {() => void} logout - Logs out the user by clearing state and calling the logout API.
  */
 interface AuthState {
-  user: { id: number; name: string; email: string } | null;
+  user: TUserData | null;
   isAuthenticated: boolean;
-  userType: UserType;
+  userType: TUserType;
   isLoading: boolean;
   fetchUser: () => Promise<void>;
   logout: () => void;

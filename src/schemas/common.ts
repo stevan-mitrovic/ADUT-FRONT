@@ -22,3 +22,23 @@ export const PasswordSchema = Yup.string()
   .required(validationMessage.REQUIRED)
   .min(8, validationMessage.MIN_LENGTH(8))
   .max(255, validationMessage.MAX_LENGTH(255));
+
+export const UserFirstNameSchema = InputSchema.required(
+  validationMessage.REQUIRED
+).max(255, validationMessage.MAX_LENGTH(255));
+
+export const UserLastNameSchema = InputSchema.required(
+  validationMessage.REQUIRED
+).max(255, validationMessage.MAX_LENGTH(255));
+
+export const UserAddressSchema = InputSchema.required(
+  validationMessage.REQUIRED
+).max(255, validationMessage.MAX_LENGTH(255));
+
+export const UserCitySchema = InputSchema.required(
+  validationMessage.REQUIRED
+).max(255, validationMessage.MAX_LENGTH(255));
+
+export const UserMunicipalitySchema = InputSchema.required(
+  validationMessage.REQUIRED
+).max(255, validationMessage.MAX_LENGTH(255));

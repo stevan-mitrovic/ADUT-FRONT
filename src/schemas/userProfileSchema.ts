@@ -1,21 +1,21 @@
 import * as Yup from "yup";
 import {
   EmailSchema,
-  PasswordSchema,
   PhoneSchema,
   UserFirstNameSchema,
   UserLastNameSchema,
+  UserAddressSchema,
+  UserCitySchema,
+  UserMunicipalitySchema,
 } from "./common";
 import { validationMessage } from "./messages";
 
-export const registrationSchema = Yup.object().shape({
+export const userProfileSchema = Yup.object().shape({
   firstName: UserFirstNameSchema,
   lastName: UserLastNameSchema,
   phone: PhoneSchema.required(validationMessage.REQUIRED),
   email: EmailSchema.required(validationMessage.REQUIRED),
-  password: PasswordSchema,
-  confirmPassword: PasswordSchema.oneOf(
-    [Yup.ref("password"), null],
-    validationMessage.PASSWORDS_MATCH
-  ),
+  address: UserAddressSchema,
+  city: UserCitySchema,
+  municipality: UserMunicipalitySchema,
 });

@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adut: Modern E-commerce with Next.js
 
-## Getting Started
+## Description
 
-First, run the development server:
+Adut is a high-performance, server-rendered e-commerce application built with Next.js 15. It leverages React Server Components, Server Actions, and Suspense to provide a seamless shopping experience. This project demonstrates modern web development practices and e-commerce functionalities.
 
+
+## Tech Stack
+
+- Node 22.10.0
+- Npm 10.2.3
+- Next.js 15
+- TypeScript
+- Zustand
+- Module Sass
+- Custom middleware for authentication
+- Server Actions to hide requests to backend app
+- ____ (for payment processing)
+
+
+## Features
+
+- Responsive design for optimal viewing on all devices
+- Zustand global storage
+- Dynamic product pages with real-time inventory updates
+- Shopping cart with persistent storage
+- Secure checkout process
+- User authentication and account management
+- Guest user view
+- SEO optimization with dynamic metadata
+
+
+## Installation
+
+1. Clone the repository
+2. Make sure you have node v22.10.0 installed
+3. Navigate to the project directory:
+```bash
+cd adut-website
+```
+4. Install dependencies:
+```bash
+npm install
+```
+5. Set up environment variables:
+Create a `.env.local` file in the root directory and add the following variables:
+```bash
+DATABASE_URL=your_database_connection_string
+...
+```
+6. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+7. Open `http://localhost:3000` to view the app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+adut-website/
+├── public/
+├── src/
+|  ├── app/
+│  |  ├── api/
+│  |  |  └── ...requests to backend app
+│  |  ├── auth/
+│  |  |  └── ...auth related pages
+│  |  ├── layout.tsx
+│  |  └── page.tsx
+|  ├── components/
+│  |  └── ...page related components
+|  ├── constants/
+|  |  └── ...application related constants
+|  ├── hooks/
+|  ├── layout/
+|  ├── lib/
+|  │  ├── api
+|  │  |  └── axiosConfig.ts
+|  │  ├── mapers
+|  │  └── cookies.ts
+|  ├── schemas/
+|  ├── store/
+|  ├── types/
+|  └── ui/
+└── ...configuration files
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## API Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses a decoupled architecture with a separate Laravel backend that exposes API endpoints. The Next.js frontend communicates with these endpoints using server actions to ensure secure and efficient data transfer.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This project is ready for deployment:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push your code to a GitHub repository
+2. ...

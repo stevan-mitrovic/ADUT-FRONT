@@ -1,20 +1,12 @@
+import { TUserData } from "@/types/user";
 /**
  * Maps raw API user response data to a structured frontend-friendly format.
  *
  * @function UserResponseMapper
  * @param {any} data - The raw user data received from the API.
- * @returns {Object} A mapped user object with default values for missing fields.
+ * @returns {TUserData} A mapped user object with default values for missing fields.
  */
-export function UserResponseMapper(data: any): {
-  id: number | null;
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  address: string;
-  city: string;
-  municipality: string;
-} {
+export function UserResponseMapper(data: any): TUserData {
   return {
     id: data?.id || null,
     firstName: data?.firstName || "",

@@ -4,12 +4,8 @@ import styles from "./index.module.scss";
 import Select from "react-select";
 import FieldWrapper from "../fieldWrapper";
 
-interface Option {
-  /** Option value */
-  value: string;
-  /** Option display label */
-  label: string;
-}
+  /** Option can be object of any type. Properties optionValue and optionLabel indicate value and label for an option */
+interface Option { [key: string]: any }
 
 export interface SelectMultiProps {
   /** Name of the select field (must match the form schema) */
@@ -18,6 +14,10 @@ export interface SelectMultiProps {
   control: any;
   /** Label for the select dropdown */
   label: string;
+  /** Option property indicating selected option's value */
+  optionValue?: string;
+  /** Option property indicating selected option's label */
+  optionLabel?: string;
   /** Alignment for the label, field value and error message*/
   textAlign?: "left" | "center";
   /** Array of selectable options */
@@ -42,6 +42,8 @@ const SelectMultiple: React.FC<SelectMultiProps> = ({
   options,
   textAlign = "left",
   placeholder,
+  optionValue = "id",
+  optionLabel = "name",
   disabled = false,
   clearable = true,
 }) => {
@@ -70,6 +72,8 @@ const SelectMultiple: React.FC<SelectMultiProps> = ({
                 maxMenuHeight={300}
                 noOptionsMessage={() => "Nema podataka"}
                 placeholder={placeholder}
+                getOptionLabel={(option) => option[optionLabel] || ""}
+                getOptionValue={(option) => option[optionValue] || ""}
                 classNames={{
                   control: (state) =>
                     error?.message

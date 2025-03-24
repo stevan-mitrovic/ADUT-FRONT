@@ -1,0 +1,87 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 10px 20px -10px #00000040;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding: 20px;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.field-group {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: nowrap;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      flex-direction: column;
+    }
+  }
+}
+
+.user-name-group {
+  width: 100%;
+
+  & > div {
+    width: 30%;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.contact-group {
+  width: 100%;
+
+  & > div:first-of-type {
+    width: 60%;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        width: 100%;
+      }
+    }
+  }
+
+  & > div:last-of-type {
+    width: 60%;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        width: 30%;
+      }
+    }
+  }
+}
+
+.address-group {
+  width: 100%;
+
+  & > div {
+    width: 50%;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        width: 100%;
+      }
+    }
+  }
+}

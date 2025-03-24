@@ -1,6 +1,30 @@
 import { NextResponse } from "next/server";
 import { setAuthCookie } from "@/lib/cookes";
-import { testingData } from "@/constants/testingData";
+import { usersList } from "@/constants/testingData";
+
+function getRandomIdNotInList(min = 1, max = 1000) {
+  const ids = usersList.map((item) => item.id);
+
+  let randomId;
+  do {
+    randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+  } while (ids.includes(randomId));
+
+  return randomId;
+}
+
+function getRandomString(length = 10) {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    result += chars[randomIndex];
+  }
+
+  return result;
+}
 
 /**
  * Handles the registration request.
@@ -13,6 +37,21 @@ export async function POST(req: Request): Promise<NextResponse> {
     /** @type {{ firstName: string, lastName: string, phone: string, email: string, password: string }} */
     const { firstName, lastName, phone, email, password } = await req.json(); // Parse request body
 
+    const newUserToken = getRandomString();
+
+    const newUser = {
+      id: getRandomIdNotInList(),
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email,
+      address: "",
+      city: "",
+      municipality: "",
+      password: password,
+      token: "mocked-jwt-token",
+    };
+
     /**
      * Simulates an registration process.
      * Resolves with a mocked JWT token.
@@ -21,7 +60,8 @@ export async function POST(req: Request): Promise<NextResponse> {
      */
     const data = await new Promise<{ token: string }>((resolve, reject) => {
       setTimeout(() => {
-        resolve({ token: testingData.USER.token });
+        usersList.push(newUser)
+        resolve({ token: newUserToken });
       }, 500);
     });
 

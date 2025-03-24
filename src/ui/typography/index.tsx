@@ -73,7 +73,19 @@ interface TypographyProps {
  *
  * @param {TypographyProps} props - The properties passed to the component.
  * @returns {JSX.Element} A styled typography element.
+ * @example
+ *  // Returns h1 "Title" element with default styling of h4 and additional styling controls
+ * <Typography
+          variant="h4"
+          as="h1"
+          className={styles.title}
+          textAlign="center"
+          fontWeight={"700"}
+        >
+          Title
+        </Typography>
  */
+
 const Typography: FC<TypographyProps> = ({
   variant,
   as,

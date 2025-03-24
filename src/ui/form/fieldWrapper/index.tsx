@@ -34,14 +34,16 @@ interface FieldWrapperProps {
  */
 const FieldWrapper: React.FC<FieldWrapperProps> = ({
   name,
-    label,
-    textAlign = "left",
+  label,
+  textAlign = "left",
   children,
   error,
 }) => {
   return (
     <div className={clsx(styles.fieldWrapper, styles[textAlign])}>
-      <label className={styles.label} htmlFor={name}>{label}</label>
+      <label className={styles.label} htmlFor={name}>
+        {label}
+      </label>
       {children}
       <span className={styles.error}>{error ? error : ""}</span>
     </div>
