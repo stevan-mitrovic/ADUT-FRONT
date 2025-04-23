@@ -63,6 +63,11 @@ const ButtonBase: React.FC<ButtonProps> = ({
 
   const handleClick = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>) => {
+          if (as === "a" && (disabled || isDebouncing)) {
+              event.preventDefault();
+              return;
+          }
+
         if (isDebouncing || disabled) return;
 
         setIsDebouncing(true);
@@ -76,11 +81,12 @@ const ButtonBase: React.FC<ButtonProps> = ({
           setIsDebouncing(false);
         }, 300);
       },
-      [props?.onClick, isDebouncing, disabled]
+      [props?.onClick, isDebouncing, disabled, as]
   );
 
   const Element = as;
   const isDisabled = disabled || isDebouncing;
+  const ariaProps = as === "a" && isDisabled ? { "aria-disabled": true } : {};
 
   return (
     <Element
@@ -94,7 +100,8 @@ const ButtonBase: React.FC<ButtonProps> = ({
         disabled && styles['disabled'],
         className
       )}
-      disabled={as === "button" ? isDisabled : disabled}
+      disabled={as === "button" ? isDisabled : undefined}
+      {...ariaProps}
       {...props}
       onClick={handleClick}
     >

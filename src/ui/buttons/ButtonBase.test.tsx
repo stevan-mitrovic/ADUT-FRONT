@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import {render, screen, fireEvent} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
@@ -32,7 +33,6 @@ describe('ButtonBase Component', () => {
 
             const button = screen.getByRole('button', {name: /click me/i});
 
-            // @ts-ignore
             expect(button).toBeInTheDocument();
             expect(button.tagName).toBe('BUTTON');
         })
@@ -42,15 +42,168 @@ describe('ButtonBase Component', () => {
 
             const link = screen.getByRole('link', {name: /link text/i});
 
-            //@ts-ignore
             expect(link).toBeInTheDocument();
             expect(link.tagName).toBe('A');
-            //@ts-ignore
             expect(link).toHaveAttribute('href', '/test');
         })
 
         test('renders with icon', () => {
             render(<ButtonBase icon={<span data-testid="test-icon">🔍</span>}>With icon</ButtonBase>)
+
+            const button = screen.getByRole('button', {name: /with icon/i});
+            const iconInButton = screen.getByTestId('test-icon');
+
+            expect(button).toBeInTheDocument();
+            expect(iconInButton).toBeInTheDocument();
+
         })
     })
+
+    //Style and class tests
+    describe('Styling', () => {
+
+        test('applies correct default classes', () => {
+            render(<ButtonBase>Default Button</ButtonBase>)
+
+            const button = screen.getByRole('button', {name: /default button/i});
+
+            expect(button).toHaveClass('button-class')
+            expect(button).toHaveClass('green-class')
+            expect(button).toHaveClass('medium-class')
+            expect(button).toHaveClass('regular-class')
+            expect(button).toHaveClass('style-button-class')
+        })
+
+        test('applies custom styling based on props', () => {
+            render(<ButtonBase
+                        color="gray"
+                        size="large"
+                        font="bold"
+                        styleType="text"
+                        widthFull
+                        className="custom-class">Custom Button</ButtonBase>)
+
+            const button = screen.getByRole('button', {name: /custom button/i});
+
+            expect(button).toHaveClass('gray-class')
+            expect(button).toHaveClass('large-class')
+            expect(button).toHaveClass('bold-class')
+            expect(button).toHaveClass('style-text-class')
+            expect(button).toHaveClass('full-w-class')
+            expect(button).toHaveClass('custom-class')
+        })
+
+        test('applies disabled class when disabled', () => {
+            render(<ButtonBase disabled>Disabled Button</ButtonBase>)
+
+            const button = screen.getByRole('button', {name: /disabled button/i});
+
+            expect(button).toHaveClass('disabled-class');
+        })
+    })
+
+    // Click behaviour tests
+    describe('Click Handling', () => {
+
+        test('prevents double click within 300ms', () => {
+            const handleClick = jest.fn();
+
+            render(<ButtonBase onClick={handleClick}>Click me</ButtonBase>);
+
+            const button = screen.getByRole('button');
+
+            userEvent.click(button);
+            expect(handleClick).toHaveBeenCalledTimes(1);
+
+            userEvent.click(button);
+            expect(handleClick).toHaveBeenCalledTimes(1);
+
+            jest.advanceTimersByTime(400);
+
+            userEvent.click(button);
+            expect(handleClick).toHaveBeenCalledTimes(2);
+        })
+    })
+
+    describe('Button tag behaviour', () => {
+
+        test('calls onClick handler when clicked', () => {
+            const handleClick = jest.fn();
+
+            render(<ButtonBase onClick={handleClick}>Clickable</ButtonBase>)
+
+            const button = screen.getByRole('button');
+
+            userEvent.click(button);
+            expect(handleClick).toBeCalledTimes(1);
+        })
+
+        test('does not call onClick when disabled', () => {
+            const handleClick = jest.fn();
+
+            render(<ButtonBase onClick={handleClick} disabled>Disabled Button</ButtonBase>);
+
+            const button = screen.getByRole('button');
+
+            userEvent.click(button);
+            expect(handleClick).not().toHaveBeenCalled();
+        })
+
+        test('applies disabled attribute when disabled', () => {
+            render(<ButtonBase disabled>Disabled Button</ButtonBase>)
+
+            const button = screen.getByRole('button', {name: /disabled button/i});
+            expect(button).toBeDisabled();
+        })
+    })
+
+    describe('Anchor tag behaviour', () => {
+
+        test('anchor tag gets disabled attribute correctly', () => {
+            render(<ButtonBase as="a" disabled>Disabled link</ButtonBase>)
+
+            const link = screen.getByRole('link');
+
+            expect(link).toHaveClass('disabled-class')
+            expect(link).not().toHaveAttribute('aria-disabled', 'true');
+        })
+
+        test('prevents navigation when disabled', () => {
+            const mockOnClick = jest.fn();
+
+            render(<ButtonBase
+                    as="a"
+                    href="https://example.com"
+                    disabled>Disabled link</ButtonBase>)
+
+            const link = screen.getByRole('link');
+
+            fireEvent.click(link);
+
+            expect(mockOnClick).not.toHaveBeenCalled();
+        })
+
+        test('allows navigation for enabled anchor links', () => {
+            const mockOnClick = jest.fn();
+
+            render(
+                <ButtonBase
+                    as="a"
+                    href="https://example.com"
+                    onClick={mockOnClick}
+                >
+                    Enabled Link
+                </ButtonBase>
+            );
+
+            const link = screen.getByRole('link');
+
+            // Simulate clicking on the enabled link
+            fireEvent.click(link);
+
+            // The onClick handler should be called
+            expect(mockOnClick).toHaveBeenCalledTimes(1);
+        });
+    })
 })
+
