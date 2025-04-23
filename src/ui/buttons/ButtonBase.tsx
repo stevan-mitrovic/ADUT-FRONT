@@ -19,7 +19,8 @@ import styles from "./index.module.scss";
  * @property {"medium" | "large"} [size="medium"] - The size of the button.
  * @property {"bold" | "regular"} [font="regular"] - The font style for the button text.
  * @property {"bold" | "regular"} [font="regular"] - The font style for the button text.
- * @property {boolean} [widthFull] - The full with style of the button.
+ * @property {boolean} [widthFull] - The full width style of the button.
+ * @property {boolean} [disabled] - The disabled state of the button.
  * @property {React.ReactNode} [icon] - An optional icon to display inside the button.
  * @property {React.ReactNode} children - The content of the button.
  * @property {React.ButtonHTMLAttributes<HTMLButtonElement>} [props] - Additional button attributes for `button` element.
@@ -32,6 +33,7 @@ export type ButtonProps = {
   size?: "medium" | "large";
   font?: "bold" | "regular";
   widthFull?: boolean;
+  disabled?: boolean;
   className?: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
@@ -51,12 +53,35 @@ const ButtonBase: React.FC<ButtonProps> = ({
   font = "regular",
   styleType = "button",
   widthFull = false,
+  disabled = false,
   className,
   icon,
   children,
   ...props
 }: ButtonProps) => {
+  const [isDebouncing, setIsDebouncing] = React.useState<boolean>(false);
+
+  const handleClick = React.useCallback(
+      (event: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>) => {
+        if (isDebouncing || disabled) return;
+
+        setIsDebouncing(true);
+
+        if (props?.onClick) {
+          // @ts-ignore
+          props?.onClick(event);
+        }
+
+        setTimeout(() => {
+          setIsDebouncing(false);
+        }, 300);
+      },
+      [props?.onClick, isDebouncing, disabled]
+  );
+
   const Element = as;
+  const isDisabled = disabled || isDebouncing;
+
   return (
     <Element
       className={clsx(
@@ -66,9 +91,12 @@ const ButtonBase: React.FC<ButtonProps> = ({
         styles[font],
         styles[`style-${styleType}`],
         widthFull && styles['full-w'],
+        disabled && styles['disabled'],
         className
       )}
+      disabled={as === "button" ? isDisabled : disabled}
       {...props}
+      onClick={handleClick}
     >
       {icon && <span className={styles["button-icon"]}>{icon}</span>}
       {children}
