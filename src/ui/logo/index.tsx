@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
 import { fonts } from "../fonts";
-import { COMPANY_INFO } from "../../constants/companyInfo";
+import { COMPANY_INFO } from "@/constants/companyInfo";
 
 /**
  * Logo Component
@@ -19,7 +19,7 @@ import { COMPANY_INFO } from "../../constants/companyInfo";
  */
 interface Props {
   short?: boolean;
-};
+}
 
 /**
  * Logo Component

@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, act} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 import ButtonBase from "./ButtonBase";
 
@@ -105,48 +105,82 @@ describe('ButtonBase Component', () => {
     // Click behaviour tests
     describe('Click Handling', () => {
 
-        test('prevents double click within 300ms', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.resetAllMocks();
+            jest.useRealTimers();
+        });
+        test('prevents double click within 300ms', async () => {
             const handleClick = jest.fn();
+
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
 
             render(<ButtonBase onClick={handleClick}>Click me</ButtonBase>);
 
             const button = screen.getByRole('button');
 
-            userEvent.click(button);
+            await user.click(button);
             expect(handleClick).toHaveBeenCalledTimes(1);
 
-            userEvent.click(button);
+            await user.click(button);
             expect(handleClick).toHaveBeenCalledTimes(1);
 
-            jest.advanceTimersByTime(400);
+            // We need to run the timers and wrap it in act to ensure React state updates
+            await act(async () => {
+                // Run any pending timers (this triggers the setTimeout callback)
+                jest.runAllTimers(); // Run all timers instead of just advancing
+            });
 
-            userEvent.click(button);
+            await user.click(button);
             expect(handleClick).toHaveBeenCalledTimes(2);
         })
     })
 
     describe('Button tag behaviour', () => {
 
-        test('calls onClick handler when clicked', () => {
+        test('calls onClick handler when clicked', async () => {
+
+            jest.useFakeTimers();
+
             const handleClick = jest.fn();
+
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
 
             render(<ButtonBase onClick={handleClick}>Clickable</ButtonBase>)
 
             const button = screen.getByRole('button');
 
-            userEvent.click(button);
+            await user.click(button);
             expect(handleClick).toBeCalledTimes(1);
+
+            jest.useRealTimers();
         })
 
-        test('does not call onClick when disabled', () => {
+        test('does not call onClick when disabled', async () => {
+
+            jest.useFakeTimers();
+
             const handleClick = jest.fn();
+
+            const user = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
 
             render(<ButtonBase onClick={handleClick} disabled>Disabled Button</ButtonBase>);
 
             const button = screen.getByRole('button');
 
-            userEvent.click(button);
-            expect(handleClick).not().toHaveBeenCalled();
+            await user.click(button);
+            expect(handleClick).not.toHaveBeenCalled();
+
+            jest.useRealTimers();
         })
 
         test('applies disabled attribute when disabled', () => {
@@ -162,10 +196,11 @@ describe('ButtonBase Component', () => {
         test('anchor tag gets disabled attribute correctly', () => {
             render(<ButtonBase as="a" disabled>Disabled link</ButtonBase>)
 
-            const link = screen.getByRole('link');
+            const link = screen.getByText('Disabled link');
 
+            expect(link.tagName.toLowerCase()).toBe('a');
             expect(link).toHaveClass('disabled-class')
-            expect(link).not().toHaveAttribute('aria-disabled', 'true');
+            expect(link).toHaveAttribute('aria-disabled', 'true');
         })
 
         test('prevents navigation when disabled', () => {

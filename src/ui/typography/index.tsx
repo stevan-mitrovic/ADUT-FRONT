@@ -97,11 +97,11 @@ const Typography: FC<TypographyProps> = ({
   fontSize,
 }) => {
   const Component =
-    as || variant?.startsWith("p")
+    as || (variant?.startsWith("p")
       ? "p"
       : variant?.startsWith("span")
       ? "span"
-      : (variant as As);
+      : (variant as As));
 
   const customStyle: CSSProperties = {
     color,
