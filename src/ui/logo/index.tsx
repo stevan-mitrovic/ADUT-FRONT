@@ -5,36 +5,36 @@ import { fonts } from "../fonts";
 import { COMPANY_INFO } from "@/constants/companyInfo";
 
 /**
- * Logo Component
- * A reusable logo component that can optionally display a shortened version.
+ * A reusable logo component that displays the company logo and optionally the company name.
  *
- * @module Logo
- */
-
-/**
- * Props for the Logo component.
+ * @example
+ * // Default logo with company name
+ * <Logo />
  *
- * @typedef {Object} Props
- * @property {boolean} [short=false] - If true, only the logo image is displayed; otherwise, the company name is also displayed.
+ * @example
+ * // Short version with only the logo image
+ * <Logo short={true} />
  */
 interface Props {
-  short?: boolean;
+    /**
+     * If true, only the logo image is displayed without the company name.
+     * @default false
+     */
+    short?: boolean;
 }
 
 /**
  * Logo Component
- * Renders the company logo, with an optional flag to show only the logo image or include the company name.
  *
- * @param {Props} props - The properties object for the Logo component.
- * @returns {JSX.Element} - The rendered Logo component.
+ * Displays the company logo with an optional company name. Links to the homepage when clicked.
  */
 const Logo: React.FC<Props> = ({ short = false }: Props) => {
-  return (
-    <Link href="/" className={styles.container}>
-      <img src="/logo.svg" alt="Adut" />
-      {!short && <span className={fonts.lexend}>{COMPANY_INFO.NAME}</span>}
-    </Link>
-  );
+    return (
+        <Link href="/" className={styles.container}>
+            <img src="/logo.svg" alt="Adut" />
+            {!short && <span className={fonts.lexend}>{COMPANY_INFO.NAME}</span>}
+        </Link>
+    );
 };
 
 export default Logo;
