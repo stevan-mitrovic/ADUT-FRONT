@@ -60,4 +60,29 @@ Button.Icon = ({ icon, ...props }: ButtonProps) => (
   <ButtonBase {...props} icon={icon} styleType={"icon"} />
 );
 
+/**
+ * Text Button variant requiring an icon as a prop.
+ *
+ * @param {ButtonProps & { icon: React.ReactNode }} props - The properties object for the Button component.
+ * @returns {JSX.Element} - The rendered Icon Button.
+ * @throws Will throw an error if the `icon` prop is not provided.
+ */
+Button.Text = ({ ...props }: ButtonProps) => (
+  <ButtonBase {...props} styleType={"text"} />
+);
+
+Button.displayName = 'Button';
+// @ts-ignore
+Button.Primary.displayName = 'Button.Primary';
+// @ts-ignore
+Button.Secondary.displayName = 'Button.Secondary';
+// @ts-ignore
+Button.White.displayName = 'Button.White';
+// @ts-ignore
+Button.Black.displayName = 'Button.Black';
+// @ts-ignore
+Button.Icon.displayName = 'Button.Icon';
+// @ts-ignore
+Button.Text.displayName = 'Button.Text';
+
 export default Button;
