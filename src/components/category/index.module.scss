@@ -3,6 +3,21 @@
   height: 100%;
 }
 
+.head{
+  margin: 22px 0 10px;
+}
+
+.title{
+  margin: 5px 0 25px;
+}
+
+.content{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
 .main-banner-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -35,5 +50,9 @@
 
 .full-w-banner{
   margin: 22px 0;
+}
+
+.category-products{
+  margin-bottom: 22px;
 }
 

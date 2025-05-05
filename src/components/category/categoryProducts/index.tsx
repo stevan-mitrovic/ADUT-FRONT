@@ -13,11 +13,11 @@ type Props = {
   showMoreLink: string;
   productsSliderKey: string;
   productList: TProduct[];
-  className?: any;
+    className?: any;
 }
 export default function CategoryProducts({sectionTitle, showMoreLink, productsSliderKey, productList, className}: Props) {
 
-  const slides = useMemo(() => productList.map(product => <ProductCard.Basic product={product}/>), [productList])
+  const slides = useMemo(() => productList.map(product => <ProductCard product={product}/>), [productList])
 
   return (
     <div className={clsx(styles.container, className)}>

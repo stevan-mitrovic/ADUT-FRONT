@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
   padding: 12px;
 
@@ -16,14 +17,14 @@
     white-space: break-spaces;
 }
 
-.old-price{
-  text-decoration: line-through;
-}
-
 .price-container{
   display: flex;
   gap: 6px;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
+}
+
+.old-price{
+  text-decoration: line-through;
 }
 

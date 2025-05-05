@@ -6,12 +6,15 @@ import React from "react";
 import {ProductCardProps} from "@/components/product-card";
 import Image from "next/image";
 import ProductCardImage from "@/components/product-card/productCard.svg";
+import SpecificationOptions from "@/components/product-card/extended/specificationOptions";
 
 
 export default function ProductCardExtended({product}: ProductCardProps) {
   const router = useRouter();
 
   // router.push("/");
+
+    const specifications = ['6.6 in, IPS, 500nits', 'Android 13', 'Octa-core 1.6 GHz']
 
   return (
       <div className={styles.container}>
@@ -27,6 +30,19 @@ export default function ProductCardExtended({product}: ProductCardProps) {
           >
               Samsung A55 8GB | 128GB
           </Typography>
+
+          <div className={styles['specifications']}>
+                        <SpecificationOptions/>
+                    {(specifications || []).map((specification, key) => <Typography
+                        key={`specification-${key}`}
+                        variant="p3"
+                        textAlign="center"
+                        fontWeight={"400"}
+                        color={"#00000099"}
+                    >
+                        {specification}
+                    </Typography>)}
+          </div>
 
 
           <div className={styles['price-container']}>
@@ -51,6 +67,16 @@ export default function ProductCardExtended({product}: ProductCardProps) {
               </Typography>
 
           </div>
+
+              <Typography
+                  variant="span2"
+                  textAlign="center"
+                  fontWeight={"600"}
+                  color={"#00000080"}
+              >
+                  + Besplatna dostava
+              </Typography>
+
 
       </div>
   );
