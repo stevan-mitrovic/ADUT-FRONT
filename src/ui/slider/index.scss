@@ -1,0 +1,43 @@
+.slider-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .slider-container__btn{
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover > * {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+       display: none;
+      }
+    }
+  }
+
+  .__embla {
+    overflow: hidden;
+    width: 100%;
+  }
+  .__embla__container {
+    display: flex;
+  }
+  .__embla__slide {
+    flex: 0 0 200px;
+    min-width: 0;
+
+    @media (max-width: $mobile-breakpoint) {
+      & {
+        flex: 0 0 40%;
+      }
+    }
+  }
+}

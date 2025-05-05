@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding: 6px;
+    }
+  }
+}
+
+.title{
+  white-space: break-spaces;
+}
+
+.old-price{
+  text-decoration: line-through;
+}
+
+.price-container{
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
