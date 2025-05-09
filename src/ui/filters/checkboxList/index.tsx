@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default function FilterCheckboxList({label = "", options = [], selectedOptions = [], onSelect}: Props) {
-    const handleChange = (option) => {
+    const handleChange = (option: any) => {
         if (selectedOptions.includes(option)) {
             onSelect(selectedOptions.filter((item) => item !== option));
         } else {
@@ -25,19 +25,16 @@ export default function FilterCheckboxList({label = "", options = [], selectedOp
             <FilterLabel>{label}</FilterLabel>
 
             <div className={styles.content}>
+                <div className={styles['content-overflow']}>
                 {(options || []).map(option => <label
                     key={option?.code}
                     className={styles['field']}>
-                    <div
-                        className={styles['field__checkbox']}>
                             <input
                                 className={styles['input']}
                                 type="checkbox"
                                 checked={(selectedOptions || []).includes(option?.code)}
                                 onChange={() => handleChange(option?.code)}
                             />
-                            <span className={styles.checkbox} />
-                    </div>
 
                     <div
                         className={styles.label}>
@@ -46,24 +43,21 @@ export default function FilterCheckboxList({label = "", options = [], selectedOp
                             as="span"
                             textAlign="left"
                             fontWeight={"500"}
-                            color={"#00000080"}
                         >
                             {option.label}
                         </Typography>
-                        <Typography
+                        {option?.additionalInfo ? <Typography
                             variant="p2"
                             as="span"
                             textAlign="left"
                             fontWeight={"500"}
-                            color={"#00000080"}
                         >
-                            {option.numberAvailable}
-                        </Typography>
+                            {option.additionalInfo}
+                        </Typography> : ""}
                     </div>
                 </label>)}
+                </div>
             </div>
-
-
         </div>
     );
 }
