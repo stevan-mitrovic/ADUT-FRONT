@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { MunicipalityResponseMapper } from "@/lib/mapers/municipalityMaper";
+import { mapMunicipalities } from "@/lib/mapers/municipalityMaper";
 import { municipalities } from "@/constants/testingData";
 
 /**
@@ -31,9 +31,8 @@ export async function GET(): Promise<NextResponse> {
     });
 
     // Map raw API response to frontend-friendly format
-    const municipalitiesRes = response.data.map((municipality: any) =>
-      MunicipalityResponseMapper(municipality)
-    );
+    const municipalitiesRes = mapMunicipalities(response.data)
+
 
     return NextResponse.json(municipalitiesRes, { status: 200 });
   } catch (error) {

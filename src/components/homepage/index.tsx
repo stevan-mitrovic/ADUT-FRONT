@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import axios from "axios";
 import styles from "./index.module.scss";
 import CategoriesNav from "@/layout/categoriesNav";
 import Banner from "@/components/homepage/banner";
@@ -11,84 +12,137 @@ import BannerImg3 from "@/ui/images/homepage/banner3.svg";
 import BannerImg4 from "@/ui/images/homepage/banner4.svg";
 import BannerImg5 from "@/ui/images/homepage/banner5.svg";
 import BannerImg6 from "@/ui/images/homepage/banner6.svg";
+import { Button } from "@/ui/buttons";
 
 export default function Homepage() {
-
   const list = [
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-    {name: "Test"},
-  ]
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+    { name: "Test" },
+  ];
+
+  const onProductsFetch = async () => {
+    try {
+      const response = await axios.get(
+        "/api/products?limit=10&page=1&category=18"
+      );
+
+      console.log("products response");
+      console.log(response);
+    } catch (error) {
+      console.log("products error");
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.container}>
-
       <div>
         <CategoriesNav />
 
         <div className={styles["main-banner-container"]}>
-          <Banner src={BannerImg1} width={691} height={534} alt={"Adut banner"}/>
+          <Banner
+            src={BannerImg1}
+            width={691}
+            height={534}
+            alt={"Adut banner"}
+          />
           <div>
-            <Banner src={BannerImg2} width={676} height={264} alt={"Adut banner"}/>
+            <Banner
+              src={BannerImg2}
+              width={676}
+              height={264}
+              alt={"Adut banner"}
+            />
             <div>
-              <Banner src={BannerImg3} width={321} height={256} alt={"Adut banner"}/>
-              <Banner src={BannerImg4} width={340} height={256} alt={"Adut banner"}/>
+              <Banner
+                src={BannerImg3}
+                width={321}
+                height={256}
+                alt={"Adut banner"}
+              />
+              <Banner
+                src={BannerImg4}
+                width={340}
+                height={256}
+                alt={"Adut banner"}
+              />
             </div>
           </div>
         </div>
 
+        <Button.Text onClick={onProductsFetch}>Get products</Button.Text>
+
         <Typography
-            variant="h2"
-            as="h1"
-            className={styles.title}
-            textAlign="center"
+          variant="h2"
+          as="h1"
+          className={styles.title}
+          textAlign="center"
         >
           Popularni proizvodi
         </Typography>
 
-        <CategoryProducts sectionTitle={"Telefoni"}
-                          showMoreLink={"/profile"}
-                          productsSliderKey={"kategorija-telefoni"}
-                          productList={list}/>
+        <CategoryProducts
+          sectionTitle={"Telefoni"}
+          showMoreLink={"/profile"}
+          productsSliderKey={"kategorija-telefoni"}
+          productList={list}
+        />
 
-        <Banner className={styles["full-w-banner"]} src={BannerImg5} width={1378} height={112} alt={"Adut banner"}/>
+        <Banner
+          className={styles["full-w-banner"]}
+          src={BannerImg5}
+          width={1378}
+          height={112}
+          alt={"Adut banner"}
+        />
 
-        <CategoryProducts sectionTitle={"Klima uredjaji"}
-                          showMoreLink={"/profile"}
-                          productsSliderKey={"kategorija-klima-uredjaji"}
-                          productList={list}/>
+        <CategoryProducts
+          sectionTitle={"Klima uredjaji"}
+          showMoreLink={"/profile"}
+          productsSliderKey={"kategorija-klima-uredjaji"}
+          productList={list}
+        />
 
-        <Banner className={styles["full-w-banner"]} src={BannerImg6} width={1378} height={112} alt={"Adut banner"}/>
+        <Banner
+          className={styles["full-w-banner"]}
+          src={BannerImg6}
+          width={1378}
+          height={112}
+          alt={"Adut banner"}
+        />
 
-        <CategoryProducts sectionTitle={"Televizori"}
-                          showMoreLink={"/profile"}
-                          productsSliderKey={"kategorija-televizori"}
-                          className={styles['category-products']}
-                          productList={list}/>
+        <CategoryProducts
+          sectionTitle={"Televizori"}
+          showMoreLink={"/profile"}
+          productsSliderKey={"kategorija-televizori"}
+          className={styles["category-products"]}
+          productList={list}
+        />
 
-        <CategoryProducts sectionTitle={"Laptopovi"}
-                          showMoreLink={"/profile"}
-                          productsSliderKey={"kategorija-laptopovi"}
-                          className={styles['category-products']}
-                          productList={list}/>
-
+        <CategoryProducts
+          sectionTitle={"Laptopovi"}
+          showMoreLink={"/profile"}
+          productsSliderKey={"kategorija-laptopovi"}
+          className={styles["category-products"]}
+          productList={list}
+        />
       </div>
-
     </div>
   );
 }
