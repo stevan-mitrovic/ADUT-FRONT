@@ -1,4 +1,6 @@
 import { TProduct } from "@/types/product";
+import { BrandResponseMapper } from "./brandMaper";
+import { formatEuroPrice } from "../formatters";
 
 /**
  * Maps raw API user response data to a structured frontend-friendly format.
@@ -11,6 +13,17 @@ export function ProductResponseMapper(data: any): TProduct {
   return {
     id: data?.id || null,
     name: data?.name || "",
+    slug: data?.slug || "",
+    brand: BrandResponseMapper(data?.brand),
+    categories: data?.categories || [],
+    price: {
+      retail: data?.retail_price || 0,
+      discounted: data?.discounted_retail_price || 0,
+    },
+    displayLabel: {
+      retailPrice: formatEuroPrice(data?.retail_price),
+      discountedRetailPrice: formatEuroPrice(data?.discounted_retail_price),
+    },
   };
 }
 

@@ -13,37 +13,15 @@ import BannerImg4 from "@/ui/images/homepage/banner4.svg";
 import BannerImg5 from "@/ui/images/homepage/banner5.svg";
 import BannerImg6 from "@/ui/images/homepage/banner6.svg";
 import { Button } from "@/ui/buttons";
+import { homepageCategoryIds } from "@/constants/categoriesList";
 
 export default function Homepage() {
-  const list = [
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-    { name: "Test" },
-  ];
-
   const onProductsFetch = async () => {
     try {
-      const response = await axios.get(
-        "/api/products?limit=10&page=1&category=18"
-      );
+      const response = await axios.get("/api/products?limit=10&page=1&brand=1");
 
       console.log("products response");
-      console.log(response);
+      console.log(response?.data?.items);
     } catch (error) {
       console.log("products error");
       console.log(error);
@@ -101,7 +79,7 @@ export default function Homepage() {
           sectionTitle={"Telefoni"}
           showMoreLink={"/profile"}
           productsSliderKey={"kategorija-telefoni"}
-          productList={list}
+          categoryId={homepageCategoryIds.PHONES}
         />
 
         <Banner
@@ -116,7 +94,7 @@ export default function Homepage() {
           sectionTitle={"Klima uredjaji"}
           showMoreLink={"/profile"}
           productsSliderKey={"kategorija-klima-uredjaji"}
-          productList={list}
+          categoryId={homepageCategoryIds.AIR_CONDITIONERS}
         />
 
         <Banner
@@ -132,7 +110,7 @@ export default function Homepage() {
           showMoreLink={"/profile"}
           productsSliderKey={"kategorija-televizori"}
           className={styles["category-products"]}
-          productList={list}
+          categoryId={homepageCategoryIds.TVS}
         />
 
         <CategoryProducts
@@ -140,7 +118,7 @@ export default function Homepage() {
           showMoreLink={"/profile"}
           productsSliderKey={"kategorija-laptopovi"}
           className={styles["category-products"]}
-          productList={list}
+          categoryId={homepageCategoryIds.PCS}
         />
       </div>
     </div>

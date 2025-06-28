@@ -31,7 +31,7 @@ export async function GET(request: Request): Promise<NextResponse> {
       params: validation.params,
     });
 
-    console.log(response.data);
+    console.log(JSON.stringify(response.data.data.items));
 
     // Map raw API response to frontend-friendly format
     const productsRes = mapProducts(response.data.data.items);

@@ -3,56 +3,49 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import {ProductCardProps} from "@/components/product-card";
+import { ProductCardProps } from "@/components/product-card";
 import Typography from "@/ui/typography";
 import ProductCardImage from "../productCard.svg";
 import styles from "./index.module.scss";
+import RetailPrice from "./RetailPrice";
+import { getProductRoute } from "@/lib/urlHandlers";
 
-
-export default function ProductCardBasic({product}: ProductCardProps) {
+export default function ProductCardBasic({ product }: ProductCardProps) {
   const router = useRouter();
 
   // router.push("/");
 
+  const productRoute = React.useMemo(() => getProductRoute(product), [product]);
+
   return (
-    <Link className={styles.container} href={"/profile"}>
+    <Link className={styles.container} href={productRoute}>
+      <Image src={ProductCardImage} alt={product.name || ""} />
 
-        <Image src={ProductCardImage} alt={"Samsung A55 8GB | 128GB"}/>
+      <Typography
+        variant="p"
+        as="h6"
+        className={styles.title}
+        textAlign="center"
+        fontWeight={"700"}
+      >
+        {product.name}
+      </Typography>
 
+      <div className={styles["price-container"]}>
+        <RetailPrice
+          diff={product.price.discounted - product.price.retail}
+          retailPrice={product.displayLabel.retailPrice}
+        />
         <Typography
-            variant="p"
-            as="h6"
-            className={styles.title}
-            textAlign="center"
-            fontWeight={"700"}
+          variant="h3"
+          as="span"
+          textAlign="center"
+          fontWeight={"700"}
+          color={"#88C738"}
         >
-          Samsung A55 8GB | 128GB
+          {product.displayLabel.discountedRetailPrice}
         </Typography>
-
-
-      <div className={styles['price-container']}>
-        <Typography
-            variant="p"
-            as="span"
-            className={styles['old-price']}
-            textAlign="center"
-            fontWeight={"600"}
-            color={"#6D6D6D"}
-        >
-          300e
-        </Typography>
-        <Typography
-            variant="h3"
-            as="span"
-            textAlign="center"
-            fontWeight={"700"}
-            color={"#88C738"}
-        >
-          229e
-        </Typography>
-
       </div>
-
     </Link>
   );
 }
