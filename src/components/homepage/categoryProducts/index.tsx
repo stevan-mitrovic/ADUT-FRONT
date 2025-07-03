@@ -17,6 +17,7 @@ type Props = {
   categoryId: number;
   className?: any;
 };
+
 export default function CategoryProducts({
   sectionTitle,
   showMoreLink,
@@ -31,9 +32,7 @@ export default function CategoryProducts({
   const onProductsFetch = async (categoryId: number) => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `/api/products?limit=10&page=1&category=${categoryId}`
-      );
+      const response = await axios.get(`/api/products?limit=10&page=1`);
 
       console.log("products response");
       console.log(response?.data?.items);
