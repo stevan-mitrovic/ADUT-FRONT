@@ -1,8 +1,12 @@
+@import "../variables/_colors.scss";
+@import "../variables/_global.scss";
+
 .container{
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 14px;
+    text-decoration: none;
 
     img{
         width: 57px;

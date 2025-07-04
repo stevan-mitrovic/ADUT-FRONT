@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.see-all-btn {
+  text-decoration: underline;
+}
+
+.slider {
+  background-color: white;
+  border-radius: 20px;
+  min-height: 264px;
+  display: flex;
+  align-items: center;
+
+  &.no-data {
+    min-height: 80px;
+  }
+}
+
+.loaders {
+  padding: 10px 12px;
+  display: flex;
+  width: 100%;
+  min-height: 264px;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+
+  & > * {
+    flex: 1;
+  }
+}

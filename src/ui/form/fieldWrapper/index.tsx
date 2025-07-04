@@ -7,7 +7,7 @@ interface FieldWrapperProps {
   /** Label for the field */
   label: string;
   /** Alignment for the label and error message*/
-  textAlign: "left" | "center";
+  textAlign?: "left" | "center";
   /** The field component (InputField, SelectField, etc.) */
   children: React.ReactElement;
   /** Error message for validation feedback */

@@ -3,6 +3,13 @@ import AllCategoriesIcon from "@/ui/icons/mainMenu/allCategoriesIcon";
 import ExpressDeliveryIcon from "@/ui/icons/mainMenu/expressDeliveryIcon";
 import PickUpIcon from "@/ui/icons/mainMenu/pickUpIcon";
 
+export const homepageCategoryIds = {
+  PHONES: 29,
+  AIR_CONDITIONERS: 11,
+  TVS: 14,
+  PCS: 30
+}
+
 export const basicCategoriesMenu: TCategoriesMenuItems = [
   {
     key: "sve-kategorije",

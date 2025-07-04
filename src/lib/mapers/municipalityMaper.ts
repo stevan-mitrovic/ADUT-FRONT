@@ -13,3 +13,16 @@ export function MunicipalityResponseMapper(data: any): TMunicipality {
     name: data?.name || "",
   };
 }
+
+/**
+ * Recursively maps an array of raw municipality data into structured `TMunicipality` objects.
+ *
+ * @function mapCategories
+ * @param {any} municipalities - The raw municipality list from the backend.
+ * @returns {TMunicipality[]} The structured municipality list.
+ */
+export function mapMunicipalities(municipalities: any[]): TMunicipality[] {
+  return municipalities.map((municipality) =>
+    MunicipalityResponseMapper(municipality)
+  );
+}

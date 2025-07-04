@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+}
+
+.head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.see-all-btn{
+  text-decoration: underline;
+}
+
+.slider{
+  background-color: white;
+  border-radius: 20px;
+}
+

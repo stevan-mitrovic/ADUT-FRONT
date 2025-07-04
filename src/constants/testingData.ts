@@ -108,3 +108,173 @@ export const municipalities = [
   { id: 76, name: "Njegovuđa" },
   { id: 77, name: "Rijeka Crnojevića" },
 ];
+
+export const filters = {
+  SUBCATEGORIES: [
+    {
+      code: 'smartphone',
+      label: 'Pametni telefoni'
+    },
+    {
+      code: 'regularphone',
+      label: 'Glupi telefoni'
+    },
+    {
+      code: 'action',
+      label: 'Na akciji (32)'
+    },
+  ],
+  BRANDS: [
+    {
+      label: 'Alcatel',
+      code: 'alcatel',
+      additionalInfo: 14,
+    },
+    {
+      label: 'Apple',
+      code: 'apple',
+      additionalInfo: 8,
+    },
+    {
+      label: 'Asus',
+      code: 'asus',
+      additionalInfo: 5,
+    },
+    {
+      label: 'BlackBerry',
+      code: 'blackberry',
+      additionalInfo: 4,
+    },
+    {
+      label: 'Google',
+      code: 'google',
+      additionalInfo: 7,
+    },
+    {
+      label: 'Honor',
+      code: 'honor',
+      additionalInfo: 17,
+    },
+    {
+      label: 'HTC',
+      code: 'htc',
+      additionalInfo: 8,
+    },
+    {
+      label: 'Huawei',
+      code: 'huawei',
+      additionalInfo: 12,
+    },
+    {
+      label: 'Lenovo',
+      code: 'lenovo',
+      additionalInfo: 12,
+    },
+    {
+      label: 'LG',
+      code: 'lg',
+      additionalInfo: 16,
+    },
+    {
+      label: 'Motorola',
+      code: 'motorola',
+      additionalInfo: 21,
+    },
+    {
+      label: 'Nokia',
+      code: 'nokia',
+      additionalInfo: 12,
+    },
+    {
+      label: 'OnePlus',
+      code: 'oneplus',
+      additionalInfo: 7,
+    },
+    {
+      label: 'Oppo',
+      code: 'oppo',
+      additionalInfo: 6,
+    },
+    {
+      label: 'Realme',
+      code: 'realme',
+      additionalInfo: 19,
+    },
+  ],
+  RAM: [
+    {
+      label: '2GB',
+      code: '2gb',
+      additionalInfo: 26,
+    },
+    {
+      label: '3GB',
+      code: '3gb',
+      additionalInfo: 15,
+    },
+    {
+      label: '4GB',
+      code: '4gb',
+      additionalInfo: 46,
+    },
+    {
+      label: '8GB',
+      code: '8gb',
+      additionalInfo: 24,
+    },
+    {
+      label: '12GB',
+      code: '12gb',
+      additionalInfo: 7,
+    },
+  ],
+  MEMORY: [
+    {
+      label: '32GB',
+      code: '32gb',
+      additionalInfo: 26,
+    },
+    {
+      label: '64GB',
+      code: '64gb',
+      additionalInfo: 15,
+    },
+    {
+      label: '128GB',
+      code: '128gb',
+      additionalInfo: 46,
+    },
+    {
+      label: '256GB',
+      code: '256gb',
+      additionalInfo: 24,
+    },
+    {
+      label: '512GB',
+      code: '512gb',
+      additionalInfo: 7,
+    },
+  ],
+  OTHER: [
+    {
+      label: 'NFC',
+      code: 'nfc',
+      additionalInfo: 26,
+    },
+    {
+      label: '5G',
+      code: '5g',
+      additionalInfo: 15,
+    },
+    {
+      label: 'Prikljucak za slusalice',
+      code: 'prikljucakzaslusalice',
+      additionalInfo: 46,
+    },
+    {
+      label: 'Bezicno punjenje',
+      code: 'bezicnopunjenje',
+      additionalInfo: 24,
+    },
+  ],
+}

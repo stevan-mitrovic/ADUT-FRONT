@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+
+  @media (max-width: $mobile-breakpoint) {
+    & {
+      padding: 6px;
+    }
+  }
+}
+
+.title{
+  white-space: break-spaces;
+  margin-top: 16px;
+}
+
+.specifications{
+  margin: 4px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.price-container{
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.old-price{
+  text-decoration: line-through;
+}
+
