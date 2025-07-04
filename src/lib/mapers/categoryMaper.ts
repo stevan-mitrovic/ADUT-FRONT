@@ -7,12 +7,12 @@ import { TCategory, TCategoriesMenuItems } from "@/types/categoriesMenu";
  * @param {Partial<TCategory>} data - The raw category response data from the backend.
  * @returns {TCategory} A formatted category object.
  */
-export function CategoryResponseMapper(data: Partial<TCategory>): TCategory {
+export function CategoryResponseMapper(data: any): TCategory {
   return {
-    id: data?.key || "",
-    key: data?.key || "",
-    href: data?.href || null,
-    title: data?.title || "",
+    id: data?.id || "",
+    key: data?.id || "",
+    href: data?.slug ? `/c/${data.slug}` : null,
+    title: data?.name || "",
     icon: null,
     children: data?.children || [],
   };

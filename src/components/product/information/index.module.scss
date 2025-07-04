@@ -1,3 +1,14 @@
 .container {
   width: 100%;
+  flex: 1;
+}
+
+.title {
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.description {
+  max-width: 350px;
+  color: $text-color-light !important;
 }

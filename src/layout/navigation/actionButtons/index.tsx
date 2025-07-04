@@ -10,8 +10,6 @@ interface Props {
 
 const ActionButtons: React.FC<Props> = ({ isMobileView }: Props) => {
   const { userType: storeUserType } = useAuthStore();
-  console.log("store user type");
-  console.log(storeUserType);
 
   return storeUserType === userType.USER ? (
     <RegisteredUserActions isMobileView={isMobileView} />

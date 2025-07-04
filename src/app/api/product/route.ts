@@ -29,9 +29,7 @@ export async function GET(request: Request): Promise<NextResponse> {
 
     // Make request to external API using configured axios instance
     const response = await api.get(`/api/products/${id ? id : slug}`);
-
-    console.log(JSON.stringify(response.data.data.item));
-
+    
     // Map raw API response to frontend-friendly format
     const productRes = ProductResponseMapper(response.data.data.item);
 

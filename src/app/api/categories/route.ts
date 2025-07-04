@@ -1,11 +1,8 @@
 //@ts-nocheck
 import { NextResponse } from "next/server";
-import {
-  allSubcategories,
-} from "@/constants/categoriesList";
-import {
-  mapCategories,
-} from "@/lib/mapers/categoryMaper";
+import api from "@/lib/api/axiosConfig";
+import { allSubcategories } from "@/constants/categoriesList";
+import { mapCategories } from "@/lib/mapers/categoryMaper";
 import { TCategory } from "@/types/categoriesMenu";
 
 type CacheType = {
@@ -36,33 +33,34 @@ export async function GET(): Promise<NextResponse> {
       return NextResponse.json({ data: cache.data }, { status: 200 });
     }
 
-    /**
-     * Simulated API response delay to mimic fetching categories from a database or external API.
-     *
-     * @returns {Promise<{ data: TCategory[] }>} A promise resolving to the category data.
-     */
-    const response = await new Promise<TCategory[]>((resolve) => {
-      setTimeout(() => {
+    const categoriesResponse = await api.get("/api/categories/tree");
 
-        resolve(mapCategories(allSubcategories));
-      }, 500); // Simulated 500ms delay
-    });
+    console.log("response categories");
+    console.log(categoriesResponse.data.data.items);
 
+    // const response = await new Promise<TCategory[]>((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(mapCategories(allSubcategories));
+    //   }, 500); // Simulated 500ms delay
+    // });
+
+    const categoriesRes = mapCategories(categoriesResponse.data.data.items);
+
+    console.log("categories mapped");
+    console.log(categoriesRes);
     // Store in cache
     cache = {
-      data: response,
+      data: categoriesRes,
       expires: now + CACHE_TTL,
     };
 
-    return NextResponse.json({ data: response }, { status: 200 });
+    return NextResponse.json({ data: categoriesRes }, { status: 200 });
   } catch (error) {
-
+    console.log("error");
+    console.log(error);
     /**
      * If an error occurs, return a default category list instead of failing.
      */
-    return NextResponse.json(
-      { data: [] },
-      { status: 200 }
-    );
+    return NextResponse.json({ data: [] }, { status: 500 });
   }
 }

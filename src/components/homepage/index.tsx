@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import axios from "axios";
 import styles from "./index.module.scss";
 import CategoriesNav from "@/layout/categoriesNav";
 import Banner from "@/components/homepage/banner";
@@ -12,21 +11,9 @@ import BannerImg3 from "@/ui/images/homepage/banner3.svg";
 import BannerImg4 from "@/ui/images/homepage/banner4.svg";
 import BannerImg5 from "@/ui/images/homepage/banner5.svg";
 import BannerImg6 from "@/ui/images/homepage/banner6.svg";
-import { Button } from "@/ui/buttons";
 import { homepageCategoryIds } from "@/constants/categoriesList";
 
 export default function Homepage() {
-  const onProductsFetch = async () => {
-    try {
-      const response = await axios.get("/api/products?limit=10&page=1&brand=1");
-
-      console.log("products response");
-      console.log(response?.data?.items);
-    } catch (error) {
-      console.log("products error");
-      console.log(error);
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -63,8 +50,6 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-
-        <Button.Text onClick={onProductsFetch}>Get products</Button.Text>
 
         <Typography
           variant="h2"

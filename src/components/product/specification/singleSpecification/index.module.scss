@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+  padding: 2px;
+}
+
+.name {
+  color: #616161;
+  width: 100%;
+  max-width: 145px;
+  min-width: 145px;
+  margin-right: 5px;
+}

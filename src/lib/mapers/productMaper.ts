@@ -20,14 +20,18 @@ export function ProductResponseMapper(data: any): TProduct {
     price: {
       retail: data?.retail_price || 0,
       discounted: data?.discounted_retail_price || 0,
+      diff: (data?.retail_price || 0) - (data?.discounted_retail_price || 0),
     },
     displayLabel: {
       retailPrice: formatEuroPrice(data?.retail_price),
       discountedRetailPrice: formatEuroPrice(data?.discounted_retail_price),
+      diff: formatEuroPrice(
+        (data?.retail_price || 0) - (data?.discounted_retail_price || 0)
+      ),
     },
     htmlSpecification: data?.html_specification || "",
     description: data?.description || "",
-refinedItems: mapRefinedItems(data?.refined_items || [])
+    refinedItems: mapRefinedItems(data?.refined_items || []),
   };
 }
 

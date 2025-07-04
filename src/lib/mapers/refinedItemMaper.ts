@@ -32,7 +32,7 @@ export function mapRefinedItemSpecifications(
   refinedItemSpecifications: any[]
 ): TRefinedItemSpecification[] {
   return refinedItemSpecifications.map((refinedItemSpecification) =>
-    RefinedItemSpecificationResponseMapper(refinedItemSpecifications)
+    RefinedItemSpecificationResponseMapper(refinedItemSpecification)
   );
 }
 
@@ -49,7 +49,7 @@ export function RefinedItemResponseMapper(data: any): TRefinedItem {
     name: data?.name || "",
     brand: BrandResponseMapper(data?.brand),
     category: data?.category,
-    specification: mapRefinedItemSpecifications(data?.refined_items || []),
+    specification: mapRefinedItemSpecifications(data?.specification || []),
     productId: data?.product_id || null,
     description: data?.description || "",
     images: data?.images || [],
@@ -64,10 +64,14 @@ export function RefinedItemResponseMapper(data: any): TRefinedItem {
     price: {
       retail: data?.retail_price || 0,
       discounted: data?.discounted_retail_price || 0,
+      diff: (data?.retail_price || 0) - (data?.discounted_retail_price || 0),
     },
     displayLabel: {
       retailPrice: formatEuroPrice(data?.retail_price),
       discountedRetailPrice: formatEuroPrice(data?.discounted_retail_price),
+      diff: formatEuroPrice(
+        (data?.retail_price || 0) - (data?.discounted_retail_price || 0)
+      ),
     },
     isAvailable: data?.is_available,
   };

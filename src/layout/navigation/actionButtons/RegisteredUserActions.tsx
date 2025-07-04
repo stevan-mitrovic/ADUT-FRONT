@@ -18,8 +18,6 @@ const RegisteredUserActions: React.FC<Props> = ({ isMobileView }: Props) => {
     console.log("Go to profile");
   };
 
-  console.log("is mobile registered ", isMobileView);
-
   return (
     <div className={styles.buttons}>
       {isMobileView ? (

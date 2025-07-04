@@ -2,16 +2,15 @@
 import React from "react";
 import styles from "./index.module.scss";
 
-interface ProductProps {
-  slug?: string;
+interface HtmlSpecificationProps {
+  htmlSpecification?: string;
 }
 
-export default function HtmlSpecification({ slug }: ProductProps) {
-
-
+export default function HtmlSpecification({ htmlSpecification }: HtmlSpecificationProps) {
   return (
-    <div className={styles.container}>
-      Html specification
-    </div>
+    <div
+      className={styles.container}
+      dangerouslySetInnerHTML={{ __html: htmlSpecification }}
+    ></div>
   );
 }

@@ -1,3 +1,41 @@
 .container {
   width: 100%;
+  border-radius: 20px;
+  padding: 30px 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid $field-border-color;
+}
+
+.priceContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.discountPrice {
+  text-decoration: line-through;
+  color: $text-color-light;
+}
+
+.currentPrice {
+  color: $primary-color;
+}
+
+.discountText {
+  color: $text-color-light;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  width: 257px;
 }

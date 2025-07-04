@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import CategoriesNav from "@/layout/categoriesNav";
 import Breadcrumbs from "@/ui/breadcrumbs";
-import { TProduct } from "@/types/product";
+import { TProduct, TRefinedItem } from "@/types/product";
 import { BasicCard } from "@/ui/card";
 import Gallery from "./gallery";
 import Information from "./information";
@@ -23,6 +23,8 @@ const breadcrumbs = [
 
 export default function Product({ slug }: ProductProps) {
   const [product, setProduct] = useState<TProduct | null>(null);
+  const [selectedRefinedItem, setSelectedRefinedItem] =
+    useState<TRefinedItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,6 +46,11 @@ export default function Product({ slug }: ProductProps) {
 
         const data = await response.json();
         setProduct(data.product);
+        if (data.product.refinedItems.length > 0) {
+          setSelectedRefinedItem(data.product.refinedItems[0]);
+        } else {
+          setSelectedRefinedItem(null);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
@@ -86,9 +93,6 @@ export default function Product({ slug }: ProductProps) {
     );
   }
 
-  console.log("product data");
-  console.log(product);
-
   return (
     <div className={styles.container}>
       <CategoriesNav />
@@ -104,17 +108,32 @@ export default function Product({ slug }: ProductProps) {
               <Gallery />
             </div>
             <div>
-              <Information />
-              <Pricing />
+              <Information
+                product={product}
+                selectedRefinedItem={selectedRefinedItem}
+                setSelectedRefinedItem={setSelectedRefinedItem}
+              />
+              <Pricing
+                product={product}
+                selectedRefinedItem={selectedRefinedItem}
+              />
             </div>
           </div>
         </BasicCard>
-        <BasicCard className={styles.specifications}>
-          <Specification />
-        </BasicCard>
-        <BasicCard className={styles.specifications}>
-          <HtmlSpecification />
-        </BasicCard>
+        {Array.isArray(selectedRefinedItem?.specification) ? (
+          <BasicCard className={styles.specifications}>
+            <Specification items={selectedRefinedItem?.specification || []} />
+          </BasicCard>
+        ) : (
+          <></>
+        )}
+        {product.htmlSpecification ? (
+          <BasicCard className={styles.specifications}>
+            <HtmlSpecification htmlSpecification={product.htmlSpecification} />
+          </BasicCard>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

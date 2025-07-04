@@ -16,7 +16,6 @@ const CategoriesMenu: React.FC = () => {
   });
 
   const handleCategoriesSubmenuToggle = (isOpen?: boolean) => {
-    console.log("handle categories open ", isOpen);
     setIsSubmenuOpen((prev) => ({
       other: false,
       categories: isOpen !== undefined ? isOpen : !prev?.categories,

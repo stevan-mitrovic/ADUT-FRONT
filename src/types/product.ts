@@ -1,18 +1,25 @@
 import { TBrand } from "./brand";
 
 export type TProductCategory = {
-    id: number;
-    name: string;
-    isLeaf?: boolean;
-}
+  id: number;
+  name: string;
+  isLeaf?: boolean;
+};
 
 export type TRefinedItemSpecification = {
-    id: number;
-    name: string;
-    value: string;
-    colorHex: string | null;
-    isHighlited: boolean;
-}
+  id: number;
+  name: string;
+  value: string;
+  colorHex: string | null;
+  isHighlited: boolean;
+};
+
+export type TRefinedItemDistinctiveTrait = {
+  id: number;
+  name: string;
+  value: string;
+  additional: string;
+};
 
 export type TRefinedItem = {
   id: number;
@@ -24,19 +31,16 @@ export type TRefinedItem = {
   description: string;
   images: string[];
   isAvailable: boolean;
-  distinctiveTrait: {
-    id: number;
-    name: string;
-    value: string;
-    additional: string;
-  } | null;
+  distinctiveTrait: TRefinedItemDistinctiveTrait | null;
   price: {
     retail: number;
     discounted: number;
+    diff: number;
   };
   displayLabel: {
     retailPrice: string;
     discountedRetailPrice: string;
+    diff: string;
   };
 };
 
@@ -47,10 +51,12 @@ export type TProduct = {
   price: {
     retail: number;
     discounted: number;
+    diff: number;
   };
   displayLabel: {
     retailPrice: string;
     discountedRetailPrice: string;
+    diff: string;
   };
   brand: TBrand;
   categories: TProductCategory[];
