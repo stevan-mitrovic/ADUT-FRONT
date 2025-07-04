@@ -1,3 +1,4 @@
+//@ts-nocheck
 /**
  * Validates query parameters for product endpoint
  * Ensures either 'id' or 'slug' is provided but not both

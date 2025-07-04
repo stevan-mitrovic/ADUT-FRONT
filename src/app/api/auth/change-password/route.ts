@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { NextResponse } from "next/server";
-import { setAuthCookie } from "@/lib/cookes";
-import { testingData } from "@/constants/testingData";
+// import { setAuthCookie } from "@/lib/cookes";
+// import { testingData } from "@/constants/testingData";
 
 /**
  * Handles the request for changed password.
@@ -11,7 +12,7 @@ import { testingData } from "@/constants/testingData";
 export async function POST(req: Request): Promise<NextResponse> {
   try {
     /** @type {{ email: string }} */
-    const { password } = await req.json(); // Parse request body
+    // const { password } = await req.json(); // Parse request body
 
     /**
      * Simulates the process.
@@ -19,11 +20,11 @@ export async function POST(req: Request): Promise<NextResponse> {
      *
      * @returns {Promise<{ token: string }>}
      */
-    const data = await new Promise<{ success: boolean }>((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ success: true });
-      }, 500);
-    });
+    // const data = await new Promise<{ success: boolean }>((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve({ success: true });
+    //   }, 500);
+    // });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error: any) {

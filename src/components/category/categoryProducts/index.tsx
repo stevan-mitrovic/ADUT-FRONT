@@ -17,7 +17,7 @@ type Props = {
 }
 export default function CategoryProducts({sectionTitle, showMoreLink, productsSliderKey, productList, className}: Props) {
 
-  const slides = useMemo(() => productList.map(product => <ProductCard product={product}/>), [productList])
+  const slides = useMemo(() => productList.map(product => <ProductCard key={product?.id} product={product}/>), [productList])
 
   return (
     <div className={clsx(styles.container, className)}>

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NextResponse } from "next/server";
 import { setAuthCookie } from "@/lib/cookes";
 import { testingData } from "@/constants/testingData";

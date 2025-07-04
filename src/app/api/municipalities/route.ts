@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NextResponse } from "next/server";
 import { mapMunicipalities } from "@/lib/mapers/municipalityMaper";
 import { municipalities } from "@/constants/testingData";

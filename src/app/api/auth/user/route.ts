@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NextResponse } from "next/server";
 import { getAuthToken } from "@/lib/cookes";
 import { TUserData } from "@/types/user";

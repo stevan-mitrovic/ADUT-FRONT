@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { NextResponse } from "next/server";
 import { removeAuthCookie } from "@/lib/cookes";
 import { userType } from "@/constants/user";

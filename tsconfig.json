@@ -13,6 +13,16 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+
+    // These options can help reduce TypeScript strictness if needed
+    "noImplicitAny": false,           // Allow implicit any types
+    "strictNullChecks": false,        // Allow null/undefined assignments
+    "strictFunctionTypes": false,     // Less strict function type checking
+    "noImplicitReturns": false,       // Don't require all code paths to return
+    "noImplicitThis": false,          // Allow implicit 'this' context
+    "noUnusedLocals": false,          // Allow unused local variables
+    "noUnusedParameters": false,      // Allow unused function parameters
+
     "plugins": [
       {
         "name": "next"

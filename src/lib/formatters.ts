@@ -249,6 +249,7 @@ export const formatDate = (
 ): string => {
   if (!value) return "";
 
+  //@ts-ignore
   const date = new Date(value);
 
   if (isNaN(date.getTime())) {

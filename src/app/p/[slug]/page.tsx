@@ -2,7 +2,7 @@ import React from "react";
 import Product from "@/components/product";
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {

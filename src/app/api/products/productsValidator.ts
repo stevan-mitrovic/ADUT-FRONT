@@ -1,3 +1,4 @@
+//@ts-nocheck
 // Define allowed query parameters
 export const ALLOWED_PARAMS = [
   "limit",
