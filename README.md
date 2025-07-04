@@ -89,9 +89,16 @@ adut-website/
 
 This project uses a decoupled architecture with a separate Laravel backend that exposes API endpoints. The Next.js frontend communicates with these endpoints using server actions to ensure secure and efficient data transfer.
 
-## Deployment
+## Manual Deployment
 
-This project is ready for deployment:
+Note: Currently, there is no .env
 
-1. Push your code to a GitHub repository
-2. ...
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
