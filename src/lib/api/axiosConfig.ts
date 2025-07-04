@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthToken } from "@/lib/cookes";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // Laravel Backend URL
+  baseURL: "https://api.uzvik.me", // Laravel Backend URL
   headers: {
     "Content-Type": "application/json",
   },
