@@ -8,21 +8,25 @@ import Image from "next/image";
 import ProductCardImage from "@/components/product-card/productCard.svg";
 import SpecificationOptions from "@/components/product-card/extended/specificationOptions";
 import { getProductRoute } from "@/lib/urlHandlers";
+import Link from "next/link";
+import { sessionSetProductId } from "@/lib/storageHandlers";
 
 export default function ProductCardExtended({ product }: ProductCardProps) {
   const router = useRouter();
 
-  // router.push("/");
-
-  const specifications = [
-    "6.6 in, IPS, 500nits",
-    "Android 13",
-    "Octa-core 1.6 GHz",
-  ];
   const productRoute = React.useMemo(() => getProductRoute(product), [product]);
+  const refinedItem = React.useMemo(() => {
+    if (product.refinedItems.length > 0) {
+      return product.refinedItems[0];
+    } else return null;
+  }, [product]);
 
   return (
-    <div className={styles.container}>
+    <Link
+      href={productRoute}
+      onClick={() => sessionSetProductId(product?.slug, product?.id)}
+      className={styles.container}
+    >
       <Image src={ProductCardImage} alt={"Samsung A55 8GB | 128GB"} />
 
       <Typography
@@ -32,35 +36,38 @@ export default function ProductCardExtended({ product }: ProductCardProps) {
         textAlign="center"
         fontWeight={"700"}
       >
-        Samsung A55 8GB | 128GB
+        {product.name}
       </Typography>
 
       <div className={styles["specifications"]}>
-        <SpecificationOptions />
-        {(specifications || []).map((specification, key) => (
-          <Typography
-            key={`specification-${key}`}
+        {(product.refinedItems || []).length > 0
+          ? <SpecificationOptions options={product.refinedItems || []}/> : <></>}
+
+        <Typography
             variant="p3"
             textAlign="center"
             fontWeight={"400"}
             color={"#00000099"}
           >
-            {specification}
+            {refinedItem?.description || ""}
           </Typography>
-        ))}
       </div>
 
       <div className={styles["price-container"]}>
-        <Typography
-          variant="p"
-          as="span"
-          className={styles["old-price"]}
-          textAlign="center"
-          fontWeight={"600"}
-          color={"#6D6D6D"}
-        >
-          300e
-        </Typography>
+        {product.price.diff !== 0 ? (
+          <Typography
+            variant="p"
+            as="span"
+            className={styles["old-price"]}
+            textAlign="center"
+            fontWeight={"600"}
+            color={"#6D6D6D"}
+          >
+            {product.displayLabel.retailPrice}
+          </Typography>
+        ) : (
+          <></>
+        )}
         <Typography
           variant="h3"
           as="span"
@@ -68,7 +75,7 @@ export default function ProductCardExtended({ product }: ProductCardProps) {
           fontWeight={"700"}
           color={"#88C738"}
         >
-          229e
+          {product.displayLabel.discountedRetailPrice}
         </Typography>
       </div>
 
@@ -80,6 +87,6 @@ export default function ProductCardExtended({ product }: ProductCardProps) {
       >
         + Besplatna dostava
       </Typography>
-    </div>
+    </Link>
   );
 }

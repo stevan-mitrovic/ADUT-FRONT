@@ -1,4 +1,5 @@
 import { TCategory, TCategoriesMenuItems } from "@/types/categoriesMenu";
+import { getCategoryRoute, createSlug } from "@/lib/urlHandlers";
 
 /**
  * Maps raw category response data from the backend to a structured format.
@@ -10,8 +11,8 @@ import { TCategory, TCategoriesMenuItems } from "@/types/categoriesMenu";
 export function CategoryResponseMapper(data: any): TCategory {
   return {
     id: data?.id || "",
-    key: data?.id || "",
-    href: data?.slug ? `/c/${data.slug}` : null,
+    slug: data?.slug ? data?.slug : createSlug(data?.name || ""),
+    href: getCategoryRoute(data?.slug, data?.name),
     title: data?.name || "",
     icon: null,
     children: data?.children || [],

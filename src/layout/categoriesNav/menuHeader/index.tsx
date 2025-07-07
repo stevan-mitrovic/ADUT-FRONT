@@ -47,7 +47,7 @@ const MenuHeader: React.FC<Props> = ({
       >
         {subMenuItems.map((item) => (
           <a
-            key={item?.key}
+            key={item?.id}
             href={item.href || ""}
             className={clsx(styles["sublist-item"])}
           >

@@ -11,10 +11,12 @@ import BannerImg3 from "@/ui/images/homepage/banner3.svg";
 import BannerImg4 from "@/ui/images/homepage/banner4.svg";
 import BannerImg5 from "@/ui/images/homepage/banner5.svg";
 import BannerImg6 from "@/ui/images/homepage/banner6.svg";
-import { homepageCategoryIds } from "@/constants/categoriesList";
+import {
+  homepageCategoryIds,
+  homepageCategoryRoutes,
+} from "@/constants/categoriesList";
 
 export default function Homepage() {
-
   return (
     <div className={styles.container}>
       <div>
@@ -62,7 +64,7 @@ export default function Homepage() {
 
         <CategoryProducts
           sectionTitle={"Telefoni"}
-          showMoreLink={"/profile"}
+          showMoreLink={homepageCategoryRoutes.PHONES}
           productsSliderKey={"kategorija-telefoni"}
           categoryId={homepageCategoryIds.PHONES}
         />
@@ -77,7 +79,7 @@ export default function Homepage() {
 
         <CategoryProducts
           sectionTitle={"Klima uredjaji"}
-          showMoreLink={"/profile"}
+          showMoreLink={homepageCategoryRoutes.AIR_CONDITIONERS}
           productsSliderKey={"kategorija-klima-uredjaji"}
           categoryId={homepageCategoryIds.AIR_CONDITIONERS}
         />
@@ -92,7 +94,7 @@ export default function Homepage() {
 
         <CategoryProducts
           sectionTitle={"Televizori"}
-          showMoreLink={"/profile"}
+          showMoreLink={homepageCategoryRoutes.TVS}
           productsSliderKey={"kategorija-televizori"}
           className={styles["category-products"]}
           categoryId={homepageCategoryIds.TVS}
@@ -100,7 +102,7 @@ export default function Homepage() {
 
         <CategoryProducts
           sectionTitle={"Laptopovi"}
-          showMoreLink={"/profile"}
+          showMoreLink={homepageCategoryRoutes.PCS}
           productsSliderKey={"kategorija-laptopovi"}
           className={styles["category-products"]}
           categoryId={homepageCategoryIds.PCS}

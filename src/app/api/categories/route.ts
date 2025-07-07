@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { NextResponse } from "next/server";
 import api from "@/lib/api/axiosConfig";
-import { allSubcategories } from "@/constants/categoriesList";
 import { mapCategories } from "@/lib/mapers/categoryMaper";
 import { TCategory } from "@/types/categoriesMenu";
 
@@ -25,9 +24,6 @@ export async function GET(): Promise<NextResponse> {
   try {
     const now = Date.now();
 
-    console.log("cache");
-    console.log(cache);
-
     // Return cached data if it's still valid
     if (cache && cache.expires > now) {
       return NextResponse.json({ data: cache.data }, { status: 200 });
@@ -35,19 +31,8 @@ export async function GET(): Promise<NextResponse> {
 
     const categoriesResponse = await api.get("/api/categories/tree");
 
-    console.log("response categories");
-    console.log(categoriesResponse.data.data.items);
-
-    // const response = await new Promise<TCategory[]>((resolve) => {
-    //   setTimeout(() => {
-    //     resolve(mapCategories(allSubcategories));
-    //   }, 500); // Simulated 500ms delay
-    // });
-
     const categoriesRes = mapCategories(categoriesResponse.data.data.items);
 
-    console.log("categories mapped");
-    console.log(categoriesRes);
     // Store in cache
     cache = {
       data: categoriesRes,

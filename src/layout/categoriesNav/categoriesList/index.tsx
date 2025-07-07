@@ -17,7 +17,7 @@ const CategoriesList: React.FC<Props> = ({
   setIsSubmenuOpen,
 }: Props) => {
   const [activeSublistKey, setActiveSublistKey] = React.useState(
-    menuItems?.[0]?.key || ""
+    menuItems?.[0]?.id || ""
   );
 
   return (
@@ -34,7 +34,7 @@ const CategoriesList: React.FC<Props> = ({
       <div className={styles["secondary-menu"]}>
         {menuItems?.map((item) => (
           <SecondaryMenu
-            key={item?.key}
+            key={item?.id}
             data={item}
             setActiveSublist={setActiveSublistKey}
           />
@@ -43,8 +43,8 @@ const CategoriesList: React.FC<Props> = ({
       <div className={styles["tertiary-menu"]}>
         {menuItems?.map((item) => (
           <TertiaryMenu
-            key={item?.key}
-            isActive={activeSublistKey === item.key}
+            key={item?.id}
+            isActive={activeSublistKey === item.id}
             list={item?.children}
           />
         ))}

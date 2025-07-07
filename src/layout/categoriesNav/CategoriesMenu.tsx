@@ -5,7 +5,6 @@ import CategoriesList from "./categoriesList";
 import CategoriesListMobile from "./categoriesListMobile";
 import { useCategoryStore } from "@/store/categoryStore";
 
-
 const CategoriesMenu: React.FC = () => {
   const menuRef = React.useRef<HTMLDivElement>(null);
   const categories = useCategoryStore((state) => state.categories);

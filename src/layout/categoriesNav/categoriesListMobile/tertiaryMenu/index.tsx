@@ -6,21 +6,17 @@ import Link from "next/link";
 
 interface Props {
   list: TCategoriesMenuItems;
-};
+}
 
 const TertiaryMenu: React.FC<Props> = ({ list = [] }: Props) => {
   return (
-    <div
-      className={clsx(
-        styles.container
-      )}
-    >
+    <div className={clsx(styles.container)}>
       {!list?.length ? (
         <></>
       ) : (
         <div className={clsx(styles.list)}>
           {list?.map((item) => (
-            <div key={item?.key}>
+            <div key={item?.id}>
               <Link
                 href={item.href || ""}
                 className={clsx(
@@ -43,7 +39,7 @@ const TertiaryMenu: React.FC<Props> = ({ list = [] }: Props) => {
                         styles.link,
                         styles["list-item"]
                       )}
-                      key={subitem.key}
+                      key={subitem.id}
                     >
                       {subitem.title}
                     </Link>

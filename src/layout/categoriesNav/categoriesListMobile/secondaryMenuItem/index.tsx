@@ -25,9 +25,9 @@ const SecondaryMenuItem: React.FC<Props> = ({
       {list?.length ? (
         <button
           className={clsx(styles.accordionToggle)}
-          onClick={() => toggleItem(data.key)}
-          aria-controls={`accordion-content-${data.key}`}
-          aria-expanded={activeSublistKey === data.key}
+          onClick={() => toggleItem(data.id)}
+          aria-controls={`accordion-content-${data.id}`}
+          aria-expanded={activeSublistKey === data.id}
         ></button>
       ) : (
         ""

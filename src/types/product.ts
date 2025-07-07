@@ -1,7 +1,7 @@
 import { TBrand } from "./brand";
 
 export type TProductCategory = {
-  id: number;
+  id: string;
   name: string;
   isLeaf?: boolean;
 };

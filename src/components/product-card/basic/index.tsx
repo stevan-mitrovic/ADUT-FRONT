@@ -9,6 +9,7 @@ import ProductCardImage from "../productCard.svg";
 import styles from "./index.module.scss";
 import RetailPrice from "./RetailPrice";
 import { getProductRoute } from "@/lib/urlHandlers";
+import { sessionSetProductId } from "@/lib/storageHandlers";
 
 export default function ProductCardBasic({ product }: ProductCardProps) {
   const router = useRouter();
@@ -18,7 +19,11 @@ export default function ProductCardBasic({ product }: ProductCardProps) {
   const productRoute = React.useMemo(() => getProductRoute(product), [product]);
 
   return (
-    <Link className={styles.container} href={productRoute}>
+    <Link
+      className={styles.container}
+      href={productRoute}
+      onClick={() => sessionSetProductId(product?.slug, product?.id)}
+    >
       <Image src={ProductCardImage} alt={product.name || ""} />
 
       <Typography
@@ -33,7 +38,7 @@ export default function ProductCardBasic({ product }: ProductCardProps) {
 
       <div className={styles["price-container"]}>
         <RetailPrice
-          diff={product.price.discounted - product.price.retail}
+          diff={product.price.diff}
           retailPrice={product.displayLabel.retailPrice}
         />
         <Typography

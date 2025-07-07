@@ -18,8 +18,8 @@ const CategoriesListMobile: React.FC<Props> = ({
 }: Props) => {
   const [activeSublistKey, setActiveSublistKey] = React.useState("");
 
-  const toggleItem = (key: string) => {
-    setActiveSublistKey((prev) => (prev === key ? "" : key));
+  const toggleItem = (id: string) => {
+    setActiveSublistKey((prev) => (prev === id ? "" : id));
   };
 
   return (
@@ -34,16 +34,16 @@ const CategoriesListMobile: React.FC<Props> = ({
       aria-hidden={!isSubmenuVisible}
     >
       {menuItems.map((item) => (
-        <div key={item.key} aria-expanded={activeSublistKey === item.key}>
+        <div key={item.id} aria-expanded={activeSublistKey === item.id}>
           <SecondaryMenuItem
             toggleItem={toggleItem}
             data={item}
             activeSublistKey={activeSublistKey}
           />
           <div
-            id={`accordion-content-${item.key}`}
+            id={`accordion-content-${item.id}`}
             className={styles.accordionContent}
-            aria-hidden={activeSublistKey !== item.key}
+            aria-hidden={activeSublistKey !== item.id}
           >
             <TertiaryMenu list={item?.children} />
           </div>

@@ -11,22 +11,34 @@ import Pricing from "./pricing";
 import Specification from "./specification";
 import HtmlSpecification from "./htmlSpecification";
 import Typography from "@/ui/typography";
+import { sessionGetProductId } from "@/lib/storageHandlers";
+import { useCategoryStore } from "@/store/categoryStore";
+import { getCategoryBreadcrumb } from "@/lib/categoryListHandlers";
 
 interface ProductProps {
   slug: string;
 }
 
-const breadcrumbs = [
-  { title: "Racunari i telefoni", href: "/" },
-  { title: "Telefoni", href: "" },
-];
-
 export default function Product({ slug }: ProductProps) {
+  const fetched = useCategoryStore((state) => state.fetched);
+  const getCategory = useCategoryStore((state) => state.getCategoryByProperty);
   const [product, setProduct] = useState<TProduct | null>(null);
   const [selectedRefinedItem, setSelectedRefinedItem] =
     useState<TRefinedItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const categoryBreadcrumbs = React.useMemo(() => {
+    if (product?.id) {
+      const productCategoryId =
+        product.categories?.length > 0 ? product.categories[0]?.id : null;
+      if (productCategoryId) {
+        const category = getCategory("id", productCategoryId);
+        const res = category ? getCategoryBreadcrumb(category) : [];
+        return res;
+      } else return [];
+    } else return [];
+  }, [fetched, product, getCategory]);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -34,8 +46,11 @@ export default function Product({ slug }: ProductProps) {
         setLoading(true);
         setError(null);
 
+        const productId = sessionGetProductId(slug);
+        const apiAddon = productId ? `id=${productId}` : `slug=${slug}`;
+
         // Call your API route
-        const response = await fetch(`/api/product?slug=${slug}`);
+        const response = await fetch(`/api/product?${apiAddon}`);
 
         if (!response.ok) {
           if (response.status === 404) {
@@ -98,7 +113,7 @@ export default function Product({ slug }: ProductProps) {
       <CategoriesNav />
 
       <div className={styles.head}>
-        <Breadcrumbs links={breadcrumbs} />
+        <Breadcrumbs links={categoryBreadcrumbs} />
       </div>
 
       <div className={styles.content}>

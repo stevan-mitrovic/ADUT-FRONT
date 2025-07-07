@@ -18,7 +18,7 @@ export function Slider({
   slides = [],
   noSlidesMessage = "Nema podataka",
 }: Params) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, startIndex: 0 });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, startIndex: 0 });
 
   useEffect(() => {
     if (emblaApi) {

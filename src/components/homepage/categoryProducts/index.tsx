@@ -1,5 +1,11 @@
 "use client";
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import React, {
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import axios from "axios";
 import styles from "./index.module.scss";
 import clsx from "clsx";
@@ -29,23 +35,21 @@ export default function CategoryProducts({
   const [loading, setLoading] = useState(false);
   const isFetched = useRef(false);
 
-  const onProductsFetch = async (categoryId: number) => {
+  const onProductsFetch = useCallback(async (categoryId: number) => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/products?limit=10&page=1`);
+      const response = await axios.get(
+        `/api/products?limit=20&page=1&category=${categoryId}`
+      );
 
-      console.log("products response");
-      console.log(response?.data?.items);
       setProductList(response?.data?.items);
     } catch (error) {
-      console.log("products error");
-      console.log(error);
       setProductList([]);
     } finally {
       setLoading(false);
       isFetched.current = true;
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!isFetched.current && categoryId) {
