@@ -24,6 +24,7 @@ type Props = {
   className?: any;
 };
 
+
 export default function CategoryProducts({
   sectionTitle,
   showMoreLink,
